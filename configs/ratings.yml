@@ -1,0 +1,26 @@
+app:
+  name: ratings
+http:
+  mode: release
+  port: 0
+db:
+  url: products:123456@tcp(db:3306)/products?charset=utf8&parseTime=True&loc=Local
+  debug : false
+log:
+  filename: /tmp/ratings.log
+  maxSize: 500
+  maxBackups: 3
+  maxAge: 3
+  level: "debug"
+  stdout: false
+consul:
+  addr: consul:8500
+grpc:
+  port: 0
+jaeger:
+  serviceName: rating
+  reporter:
+    localAgentHostPort: "jaeger-agent:6831"
+  sampler:
+    type: const
+    param: 1

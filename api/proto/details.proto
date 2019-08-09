@@ -1,0 +1,19 @@
+syntax = "proto3";
+import "google/protobuf/timestamp.proto";
+option go_package = "proto";
+
+
+service Details {
+    rpc Get (GetDetailRequest) returns (Detail);
+}
+
+message GetDetailRequest {
+    uint64 id = 1;
+}
+
+message Detail {
+    uint64 id = 1;
+    string name = 2;
+    float price = 3;
+    google.protobuf.Timestamp createdTime = 4;
+}

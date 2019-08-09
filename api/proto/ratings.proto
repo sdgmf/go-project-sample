@@ -1,0 +1,19 @@
+syntax = "proto3";
+import "google/protobuf/timestamp.proto";
+option go_package = "proto";
+
+
+service Ratings {
+    rpc Get (GetRatingRequest) returns (Rating);
+}
+
+message GetRatingRequest {
+    uint64 productID = 1;
+}
+
+message Rating {
+    uint64 id = 1;
+    uint64 productID = 2;
+    uint32 score = 3;
+    google.protobuf.Timestamp updatedTime = 4;
+}

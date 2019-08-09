@@ -1,0 +1,152 @@
+version: '3'
+services:
+  details:
+    build:
+      context: ..
+      dockerfile: "build/details/Dockerfile"
+    command: ./wait-for db:3306 -t 30 -- ./app
+    depends_on:
+      - db
+      - consul
+      - jaeger-agent
+    ports:
+      - "8081:8081"
+  ratings:
+    build:
+      context: ..
+      dockerfile: "build/ratings/Dockerfile"
+    command: ./wait-for db:3306 -t 30 -- ./app
+    depends_on:
+      - db
+      - consul
+      - jaeger-agent
+  reviews:
+    build:
+      context: ..
+      dockerfile: "build/reviews/Dockerfile"
+    command: ./wait-for db:3306 -t 30 -- ./app
+    depends_on:
+      - db
+      - consul
+      - jaeger-agent
+  products:
+    build:
+      context: ..
+      dockerfile: "build/products/Dockerfile"
+    command: ./wait-for db:3306 -t 30 -- ./app
+    depends_on:
+      - db
+      - consul
+      - jaeger-agent
+    ports:
+      - "8080:8080"
+  db:
+    image: mariadb:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+      MYSQL_DATABASE: products
+      MYSQL_USER: products
+      MYSQL_PASSWORD: 123456
+    volumes:
+      - ../scripts/products.sql:/docker-entrypoint-initdb.d/products.sql
+  consul:
+    image: consul:1.4
+    environment:
+      - "CONSUL_BIND_INTERFACE=eth0"
+      - "CONSUL_ALLOW_PRIVILEGED_PORTS="
+      - "CONSUL_HTTP_ADDR=0.0.0.0"
+    command:
+      - consul
+      - agent
+      - -dev
+      - -ui
+      - -bind={{ GetInterfaceIP "eth0" }}
+      - -client={{ GetInterfaceIP "eth0" }}
+    ports:
+      - "8500:8500"
+    expose:
+      - 53/udp
+  jaeger-collector:
+    image: jaegertracing/jaeger-collector
+    command: ["--cassandra.keyspace=jaeger_v1_dc1", "--cassandra.servers=cassandra", "--collector.zipkin.http-port=9411"]
+    ports:
+      - "14269"
+      - "14268:14268"
+      - "14267"
+      - "14250"
+      - "9411:9411"
+    restart: on-failure
+    depends_on:
+      - cassandra-schema
+
+  jaeger-query:
+    image: jaegertracing/jaeger-query
+    command: ["--cassandra.keyspace=jaeger_v1_dc1", "--cassandra.servers=cassandra"]
+    ports:
+      - "16686:16686"
+      - "16687"
+    restart: on-failure
+    depends_on:
+      - cassandra-schema
+  jaeger-agent:
+    image: jaegertracing/jaeger-agent
+    command: ["--reporter.grpc.host-port=jaeger-collector:14250"]
+    ports:
+      - "5775:5775/udp"
+      - "6831:6831/udp"
+      - "6832:6832/udp"
+      - "5778:5778"
+    restart: on-failure
+    depends_on:
+      - jaeger-collector
+  cassandra:
+    image: cassandra:3.9
+  cassandra-schema:
+    image: jaegertracing/jaeger-cassandra-schema
+    depends_on:
+      - cassandra
+  prometheus:
+    image: prom/prometheus
+    ports:
+      - 9090:9090
+    volumes:
+      - "../configs/prometheus.yml:/etc/prometheus/prometheus.yml"
+  grafana-db:
+    image: mariadb:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_DATABASE: grafana
+      MYSQL_USER: grafana
+      MYSQL_PASSWORD: password
+    ports:
+      - 3306
+  grafana:
+    image: grafana/grafana:latest
+    volumes:
+      - ../grafana/provisioning/:/etc/grafana/provisioning/
+      - ../grafana/dashboards/:/tmp/dashboards/
+    environment:
+      # - VIRTUAL_HOST=grafana.loc
+      - GF_SERVER_ROOT_URL=http://localhost:3000
+      - GF_DATABASE_NAME=grafana
+      - GF_DATABASE_USER=grafana
+      - GF_DATABASE_PASSWORD=password
+      - GF_DATABASE_TYPE=mysql
+      - GF_DATABASE_HOST=grafana-db:3306
+      - GF_DATABASE_MAX_OPEN_CONN=300
+      - GF_SESSION_PROVIDER=mysql
+      - GF_SESSION_PROVIDER_CONFIG=grafana:password@tcp(db:3306)/grafana?allowNativePasswords=true
+      # - GF_DATABASE_TYPE=postgres
+      # - GF_DATABASE_HOST=db:5432
+      # - GF_DATABASE_SSL_MODE=disable
+      # - GF_SESSION_PROVIDER=postgres
+      # - GF_SESSION_PROVIDER_CONFIG=user=grafana password=password host=db port=5432 dbname=grafana sslmode=disable
+      - GF_SERVER_ROUTER_LOGGING=true
+      - GF_LOG_CONSOLE_FORMAT=json
+      - GF_LOG_FILTERS=alerting.notifier:debug,alerting.notifier.slack:debug,auth:debug
+      - GF_AUTH_TOKEN_ROTATION_INTERVAL_MINUTES=2
+    ports:
+      - "3000:3000"
+    depends_on:
+      - grafana-db
+    restart: always

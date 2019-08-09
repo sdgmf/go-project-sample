@@ -1,0 +1,23 @@
+app:
+  name: products
+http:
+  mode: release
+  port: 8080
+log:
+  filename: /tmp/products.log
+  maxSize: 500
+  maxBackups: 3
+  maxAge: 3
+  level: "debug"
+  stdout: false
+consul:
+  addr: consul:8500
+grpc:
+  port: 0
+jaeger:
+  serviceName: products
+  reporter:
+    localAgentHostPort: "jaeger-agent:6831"
+  sampler:
+    type: const
+    param: 1

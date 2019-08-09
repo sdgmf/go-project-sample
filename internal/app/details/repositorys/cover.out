@@ -1,0 +1,16 @@
+mode: count
+github.com/sdgmf/go-project-sample/pkg/Repositorys/wire_gen.go:17.54,20.16 3 1
+github.com/sdgmf/go-project-sample/pkg/Repositorys/wire_gen.go:23.2,24.16 2 1
+github.com/sdgmf/go-project-sample/pkg/Repositorys/wire_gen.go:27.2,28.16 2 1
+github.com/sdgmf/go-project-sample/pkg/Repositorys/wire_gen.go:31.2,32.16 2 1
+github.com/sdgmf/go-project-sample/pkg/Repositorys/wire_gen.go:35.2,36.16 2 1
+github.com/sdgmf/go-project-sample/pkg/Repositorys/wire_gen.go:39.2,40.29 2 1
+github.com/sdgmf/go-project-sample/pkg/Repositorys/wire_gen.go:20.16,22.3 1 0
+github.com/sdgmf/go-project-sample/pkg/Repositorys/wire_gen.go:24.16,26.3 1 0
+github.com/sdgmf/go-project-sample/pkg/Repositorys/wire_gen.go:28.16,30.3 1 0
+github.com/sdgmf/go-project-sample/pkg/Repositorys/wire_gen.go:32.16,34.3 1 0
+github.com/sdgmf/go-project-sample/pkg/Repositorys/wire_gen.go:36.16,38.3 1 0
+github.com/sdgmf/go-project-sample/pkg/Repositorys/products.go:19.79,24.2 1 1
+github.com/sdgmf/go-project-sample/pkg/Repositorys/products.go:26.76,28.72 2 3
+github.com/sdgmf/go-project-sample/pkg/Repositorys/products.go:31.2,31.8 1 1
+github.com/sdgmf/go-project-sample/pkg/Repositorys/products.go:28.72,30.3 1 2

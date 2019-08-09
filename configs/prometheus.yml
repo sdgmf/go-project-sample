@@ -1,0 +1,21 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 1m
+scrape_configs:
+  - job_name: consul
+    consul_sd_configs:
+    - server: consul:8500
+      datacenter: dc1
+      tags:
+      - http
+    relabel_configs:
+      - source_labels: [__meta_consul_service]
+        target_label: app
+  - job_name: grafana
+    static_configs:
+    - targets:
+      - "grafana:3000"
+  - job_name: prometheus
+    static_configs:
+      - targets:
+          - "localhost:9090"
