@@ -1,12 +1,11 @@
-### Get Start
 
-Prerequisite
+###Prerequisite
 1. golang
 2. docker、docker-compose
 3. [jsonnet](https://jsonnet.org/)
 4. make
 
-Get Start
+### Get Start
 ```bash
     make docker-compose
 ```
