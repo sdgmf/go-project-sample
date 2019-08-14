@@ -36,12 +36,13 @@ lint:
 .PHONY: proto
 proto:
 	protoc -I api/proto ./api/proto/* --go_out=plugins=grpc:api/proto
-.PHONY: docker
+.PHONY: dash
 dash: # create grafana dashboard
 	 for app in $(apps) ;\
 	 do \
 	 	jsonnet -J ./grafana/grafonnet-lib   -o ./grafana/dashboards/$$app.json  --ext-str app=$$app ./grafana/dashboard.jsonnet ;\
 	 done
+.PHONY: pubdash
 pubdash:
 	 for app in $(apps) ;\
 	 do \
@@ -49,6 +50,7 @@ pubdash:
 	 	curl -X DELETE --user admin:admin  -H "Content-Type: application/json" 'http://localhost:3000/api/dashboards/db/$$app'; \
 	 	curl -x POST --user admin:admin  -H "Content-Type: application/json" --data-binary "@./grafana/dashboards-api/$$app-api.json" http://localhost:3000/api/dashboards/db ; \
 	 done
-docker: build dash
+.PHONY: docker
+docker-compose: build dash
 	docker-compose -f deployments/docker-compose.yml up --build -d
 all: lint cover docker
