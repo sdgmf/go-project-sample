@@ -64,12 +64,13 @@ local baseHttpQPS() = singlestat.new(
 local baseHttpError() = singlestat.new(
   'Percentage of http error request',
   datasource='Prometheus',
+  format='percent',
   span=2,
   valueName='current',
   transparent=true,
 ).addTarget(
   prometheus.target(
-    'sum(rate(http_server_requests_seconds_count{app="' + app + '",status!="200"}[1m])) /sum(rate(http_server_requests_seconds_count{app="' + app + '"}[1m])) * 100.0',
+    'sum(rate(http_server_requests_seconds_count{app="' + app + '",code!="200"}[1m])) /sum(rate(http_server_requests_seconds_count{app="' + app + '"}[1m])) * 100.0',
     instant=true
   )
 );
@@ -227,7 +228,7 @@ local httpLatency(groups=['instance'], quantile='0.99') = graphPanel.new(
   min=0,
 ).addTarget(
   prometheus.target(
-    '1000 * histogram_quantile(' + quantile + ',sum(rate(http_server_seconds_bucket{app="' + app + '"}[1m])) by (' + std.join(',', groups) + ',le))',
+    '1000 * histogram_quantile(' + quantile + ',sum(rate(http_server_requests_seconds_bucket{app="' + app + '"}[1m])) by (' + std.join(',', groups) + ',le))',
     datasource='Prometheus',
     legendFormat='{{' + std.join('}}.{{', groups) + '}}'
   )
@@ -277,10 +278,9 @@ dashboard.new(app, schemaVersion=16, tags=['go'], editable=true, uid=app)
           .addPanel(grpcQPS('server', ['grpc_service', 'grpc_method']), gridPos={ x: 12, y: 0, w: 12, h: 10 })
           , {})
 .addPanel(row.new(title='Grpc Server request error percentage', collapse=true)
-          .addPanel(grpcErrorPercentage('server', ['grpc_code']), gridPos={ x: 0, y: 0, w: 12, h: 10 })
-          .addPanel(grpcErrorPercentage('server', ['instance']), gridPos={ x: 12, y: 0, w: 12, h: 10 })
           .addPanel(grpcErrorPercentage('server', ['grpc_service']), gridPos={ x: 0, y: 0, w: 12, h: 10 })
           .addPanel(grpcErrorPercentage('server', ['grpc_service', 'grpc_method']), gridPos={ x: 12, y: 0, w: 12, h: 10 })
+          .addPanel(grpcErrorPercentage('server', ['instance']), gridPos={ x: 0, y: 0, w: 12, h: 10 })
           , {})
 .addPanel(row.new(title='Grpc server 99%-tile Latency of requests', collapse=true)
           .addPanel(grpcLatency('server', ['grpc_code'], 0.99), gridPos={ x: 0, y: 0, w: 12, h: 10 })
@@ -288,6 +288,12 @@ dashboard.new(app, schemaVersion=16, tags=['go'], editable=true, uid=app)
           .addPanel(grpcLatency('server', ['grpc_service'], 0.99), gridPos={ x: 0, y: 0, w: 12, h: 10 })
           .addPanel(grpcLatency('server', ['grpc_service', 'grpc_method'], 0.99), gridPos={ x: 12, y: 0, w: 12, h: 10 })
           , {})
+.addPanel(row.new(title='Grpc server 90%-tile Latency of requests', collapse=true)
+        .addPanel(grpcLatency('server', ['grpc_code'], 0.90), gridPos={ x: 0, y: 0, w: 12, h: 10 })
+        .addPanel(grpcLatency('server', ['instance'], 0.90), gridPos={ x: 12, y: 0, w: 12, h: 10 })
+        .addPanel(grpcLatency('server', ['grpc_service'], 0.90), gridPos={ x: 0, y: 0, w: 12, h: 10 })
+        .addPanel(grpcLatency('server', ['grpc_service', 'grpc_method'], 0.99), gridPos={ x: 12, y: 0, w: 12, h: 10 })
+        , {})
 .addPanel(row.new(title='Grpc client request rate', collapse=true)
           .addPanel(grpcQPS('client', ['grpc_code']), gridPos={ x: 0, y: 0, w: 12, h: 10 })
           .addPanel(grpcQPS('client', ['instance']), gridPos={ x: 12, y: 0, w: 12, h: 10 })
@@ -295,10 +301,9 @@ dashboard.new(app, schemaVersion=16, tags=['go'], editable=true, uid=app)
           .addPanel(grpcQPS('client', ['grpc_service', 'grpc_method']), gridPos={ x: 12, y: 0, w: 12, h: 10 })
           , {})
 .addPanel(row.new(title='Grpc client request error percentage', collapse=true)
-          .addPanel(grpcErrorPercentage('client', ['grpc_code']), gridPos={ x: 0, y: 0, w: 12, h: 10 })
-          .addPanel(grpcErrorPercentage('client', ['instance']), gridPos={ x: 12, y: 0, w: 12, h: 10 })
           .addPanel(grpcErrorPercentage('client', ['grpc_service']), gridPos={ x: 0, y: 0, w: 12, h: 10 })
           .addPanel(grpcErrorPercentage('client', ['grpc_service', 'grpc_method']), gridPos={ x: 12, y: 0, w: 12, h: 10 })
+          .addPanel(grpcErrorPercentage('client', ['instance']), gridPos={ x: 0, y: 0, w: 12, h: 10 })
           , {})
 .addPanel(row.new(title='Grpc client 99%-tile Latency of requests', collapse=true)
           .addPanel(grpcLatency('client', ['grpc_code'], 0.99), gridPos={ x: 0, y: 0, w: 12, h: 10 })
@@ -319,10 +324,8 @@ dashboard.new(app, schemaVersion=16, tags=['go'], editable=true, uid=app)
           .addPanel(httpQPS( ['grpc_service', 'grpc_method']), gridPos={ x: 12, y: 0, w: 12, h: 10 })
           , {})
 .addPanel(row.new(title='Http server request error percentage', collapse=true)
-          .addPanel(httpErrorPercentage( ['grpc_code']), gridPos={ x: 0, y: 0, w: 12, h: 10 })
-          .addPanel(httpErrorPercentage( ['instance']), gridPos={ x: 12, y: 0, w: 12, h: 10 })
-          .addPanel(httpErrorPercentage( ['grpc_service']), gridPos={ x: 0, y: 0, w: 12, h: 10 })
-          .addPanel(httpErrorPercentage( ['grpc_service', 'grpc_method']), gridPos={ x: 12, y: 0, w: 12, h: 10 })
+          .addPanel(httpErrorPercentage( ['instance']), gridPos={ x: 0, y: 0, w: 12, h: 10 })
+          .addPanel(httpErrorPercentage( ['method','uri']), gridPos={ x: 12, y: 0, w: 12, h: 10 })
           , {})
 .addPanel(row.new(title='Http server 99%-tile Latency of requests', collapse=true)
           .addPanel(httpLatency( ['grpc_code'], 0.99), gridPos={ x: 0, y: 0, w: 12, h: 10 })

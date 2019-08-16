@@ -6,7 +6,6 @@ import (
 	"github.com/grpc-ecosystem/go-grpc-middleware/logging/zap"
 	"github.com/grpc-ecosystem/go-grpc-middleware/recovery"
 	"github.com/grpc-ecosystem/go-grpc-middleware/tags"
-	"github.com/grpc-ecosystem/go-grpc-middleware/tracing/opentracing"
 	"github.com/grpc-ecosystem/go-grpc-prometheus"
 	"github.com/grpc-ecosystem/grpc-opentracing/go/otgrpc"
 	consulApi "github.com/hashicorp/consul/api"
@@ -58,7 +57,6 @@ func NewServer(o *ServerOptions, logger *zap.Logger, init InitServers, consulCli
 		gs = grpc.NewServer(
 			grpc.StreamInterceptor(grpc_middleware.ChainStreamServer(
 				grpc_ctxtags.StreamServerInterceptor(),
-				grpc_opentracing.StreamServerInterceptor(),
 				grpc_prometheus.StreamServerInterceptor,
 				grpc_zap.StreamServerInterceptor(logger),
 				grpc_recovery.StreamServerInterceptor(),
@@ -66,7 +64,6 @@ func NewServer(o *ServerOptions, logger *zap.Logger, init InitServers, consulCli
 			)),
 			grpc.UnaryInterceptor(grpc_middleware.ChainUnaryServer(
 				grpc_ctxtags.UnaryServerInterceptor(),
-				grpc_opentracing.UnaryServerInterceptor(),
 				grpc_prometheus.UnaryServerInterceptor,
 				grpc_zap.UnaryServerInterceptor(logger),
 				grpc_recovery.UnaryServerInterceptor(),

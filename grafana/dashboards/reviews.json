@@ -363,7 +363,7 @@
                   "#d44a3a"
                ],
                "datasource": "Prometheus",
-               "format": "none",
+               "format": "percent",
                "gauge": {
                   "maxValue": 100,
                   "minValue": 0,
@@ -415,7 +415,7 @@
                "tableColumn": "",
                "targets": [
                   {
-                     "expr": "sum(rate(http_server_requests_seconds_count{app=\"reviews\",status!=\"200\"}[1m])) /sum(rate(http_server_requests_seconds_count{app=\"reviews\"}[1m])) * 100.0",
+                     "expr": "sum(rate(http_server_requests_seconds_count{app=\"reviews\",code!=\"200\"}[1m])) /sum(rate(http_server_requests_seconds_count{app=\"reviews\"}[1m])) * 100.0",
                      "format": "time_series",
                      "instant": true,
                      "intervalFactor": 2,
@@ -3011,180 +3011,6 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": null,
-               "description": "Percentage of grpc server error request group by (grpc_code)",
-               "fill": 0,
-               "gridPos": {
-                  "h": 10,
-                  "w": 12,
-                  "x": 0,
-                  "y": 0
-               },
-               "id": 40,
-               "legend": {
-                  "alignAsTable": true,
-                  "avg": false,
-                  "current": true,
-                  "max": true,
-                  "min": false,
-                  "rightSide": true,
-                  "show": true,
-                  "total": false,
-                  "values": true
-               },
-               "lines": true,
-               "linewidth": 1,
-               "links": [ ],
-               "nullPointMode": "null",
-               "percentage": false,
-               "pointradius": 5,
-               "points": false,
-               "renderer": "flot",
-               "repeat": null,
-               "seriesOverrides": [ ],
-               "spaceLength": 10,
-               "span": 6,
-               "stack": false,
-               "steppedLine": false,
-               "targets": [
-                  {
-                     "datasource": "Prometheus",
-                     "expr": "sum(rate(grpc_server_handled_total{app=\"reviews\",grpc_type=\"unary\",grpc_code!=\"OK\"}[1m])) by (grpc_code)/sum(rate(grpc_server_started_total{app=\"reviews\",grpc_type=\"unary\"}[1m])) by (grpc_code)* 100.0",
-                     "format": "time_series",
-                     "intervalFactor": 2,
-                     "legendFormat": "{{grpc_code}}",
-                     "refId": "A"
-                  }
-               ],
-               "thresholds": [ ],
-               "timeFrom": null,
-               "timeShift": null,
-               "title": "Percentage of grpc server error request group by (grpc_code)",
-               "tooltip": {
-                  "shared": true,
-                  "sort": 0,
-                  "value_type": "individual"
-               },
-               "transparent": true,
-               "type": "graph",
-               "xaxis": {
-                  "buckets": null,
-                  "mode": "time",
-                  "name": null,
-                  "show": true,
-                  "values": [ ]
-               },
-               "yaxes": [
-                  {
-                     "format": "percent",
-                     "label": null,
-                     "logBase": 1,
-                     "max": null,
-                     "min": 0,
-                     "show": true
-                  },
-                  {
-                     "format": "percent",
-                     "label": null,
-                     "logBase": 1,
-                     "max": null,
-                     "min": 0,
-                     "show": true
-                  }
-               ]
-            },
-            {
-               "aliasColors": { },
-               "bars": false,
-               "dashLength": 10,
-               "dashes": false,
-               "datasource": null,
-               "description": "Percentage of grpc server error request group by (instance)",
-               "fill": 0,
-               "gridPos": {
-                  "h": 10,
-                  "w": 12,
-                  "x": 12,
-                  "y": 0
-               },
-               "id": 41,
-               "legend": {
-                  "alignAsTable": true,
-                  "avg": false,
-                  "current": true,
-                  "max": true,
-                  "min": false,
-                  "rightSide": true,
-                  "show": true,
-                  "total": false,
-                  "values": true
-               },
-               "lines": true,
-               "linewidth": 1,
-               "links": [ ],
-               "nullPointMode": "null",
-               "percentage": false,
-               "pointradius": 5,
-               "points": false,
-               "renderer": "flot",
-               "repeat": null,
-               "seriesOverrides": [ ],
-               "spaceLength": 10,
-               "span": 6,
-               "stack": false,
-               "steppedLine": false,
-               "targets": [
-                  {
-                     "datasource": "Prometheus",
-                     "expr": "sum(rate(grpc_server_handled_total{app=\"reviews\",grpc_type=\"unary\",grpc_code!=\"OK\"}[1m])) by (instance)/sum(rate(grpc_server_started_total{app=\"reviews\",grpc_type=\"unary\"}[1m])) by (instance)* 100.0",
-                     "format": "time_series",
-                     "intervalFactor": 2,
-                     "legendFormat": "{{instance}}",
-                     "refId": "A"
-                  }
-               ],
-               "thresholds": [ ],
-               "timeFrom": null,
-               "timeShift": null,
-               "title": "Percentage of grpc server error request group by (instance)",
-               "tooltip": {
-                  "shared": true,
-                  "sort": 0,
-                  "value_type": "individual"
-               },
-               "transparent": true,
-               "type": "graph",
-               "xaxis": {
-                  "buckets": null,
-                  "mode": "time",
-                  "name": null,
-                  "show": true,
-                  "values": [ ]
-               },
-               "yaxes": [
-                  {
-                     "format": "percent",
-                     "label": null,
-                     "logBase": 1,
-                     "max": null,
-                     "min": 0,
-                     "show": true
-                  },
-                  {
-                     "format": "percent",
-                     "label": null,
-                     "logBase": 1,
-                     "max": null,
-                     "min": 0,
-                     "show": true
-                  }
-               ]
-            },
-            {
-               "aliasColors": { },
-               "bars": false,
-               "dashLength": 10,
-               "dashes": false,
-               "datasource": null,
                "description": "Percentage of grpc server error request group by (grpc_service)",
                "fill": 0,
                "gridPos": {
@@ -3193,7 +3019,7 @@
                   "x": 0,
                   "y": 0
                },
-               "id": 42,
+               "id": 40,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -3280,7 +3106,7 @@
                   "x": 12,
                   "y": 0
                },
-               "id": 43,
+               "id": 41,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -3352,6 +3178,93 @@
                      "show": true
                   }
                ]
+            },
+            {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
+               "datasource": null,
+               "description": "Percentage of grpc server error request group by (instance)",
+               "fill": 0,
+               "gridPos": {
+                  "h": 10,
+                  "w": 12,
+                  "x": 0,
+                  "y": 0
+               },
+               "id": 42,
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": false,
+                  "current": true,
+                  "max": true,
+                  "min": false,
+                  "rightSide": true,
+                  "show": true,
+                  "total": false,
+                  "values": true
+               },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "span": 6,
+               "stack": false,
+               "steppedLine": false,
+               "targets": [
+                  {
+                     "datasource": "Prometheus",
+                     "expr": "sum(rate(grpc_server_handled_total{app=\"reviews\",grpc_type=\"unary\",grpc_code!=\"OK\"}[1m])) by (instance)/sum(rate(grpc_server_started_total{app=\"reviews\",grpc_type=\"unary\"}[1m])) by (instance)* 100.0",
+                     "format": "time_series",
+                     "intervalFactor": 2,
+                     "legendFormat": "{{instance}}",
+                     "refId": "A"
+                  }
+               ],
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "Percentage of grpc server error request group by (instance)",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 0,
+                  "value_type": "individual"
+               },
+               "transparent": true,
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "format": "percent",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": 0,
+                     "show": true
+                  },
+                  {
+                     "format": "percent",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": 0,
+                     "show": true
+                  }
+               ]
             }
          ],
          "repeat": null,
@@ -3366,7 +3279,7 @@
          "collapse": true,
          "collapsed": true,
          "gridPos": { },
-         "id": 44,
+         "id": 43,
          "panels": [
             {
                "aliasColors": { },
@@ -3382,7 +3295,7 @@
                   "x": 0,
                   "y": 0
                },
-               "id": 45,
+               "id": 44,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -3469,7 +3382,7 @@
                   "x": 12,
                   "y": 0
                },
-               "id": 46,
+               "id": 45,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -3556,7 +3469,7 @@
                   "x": 0,
                   "y": 0
                },
-               "id": 47,
+               "id": 46,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -3643,7 +3556,7 @@
                   "x": 12,
                   "y": 0
                },
-               "id": 48,
+               "id": 47,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -3729,7 +3642,370 @@
          "collapse": true,
          "collapsed": true,
          "gridPos": { },
-         "id": 49,
+         "id": 48,
+         "panels": [
+            {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
+               "datasource": null,
+               "description": "Latency of grpc server request group by (grpc_code)",
+               "fill": 0,
+               "gridPos": {
+                  "h": 10,
+                  "w": 12,
+                  "x": 0,
+                  "y": 0
+               },
+               "id": 49,
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": false,
+                  "current": true,
+                  "max": true,
+                  "min": false,
+                  "rightSide": true,
+                  "show": true,
+                  "total": false,
+                  "values": true
+               },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "span": 6,
+               "stack": false,
+               "steppedLine": false,
+               "targets": [
+                  {
+                     "datasource": "Prometheus",
+                     "expr": "1000 * histogram_quantile(0.90000000000000002,sum(rate(grpc_server_handling_seconds_bucket{app=\"reviews\",grpc_type=\"unary\"}[1m])) by (grpc_code,le))",
+                     "format": "time_series",
+                     "intervalFactor": 2,
+                     "legendFormat": "{{grpc_code}}",
+                     "refId": "A"
+                  }
+               ],
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "Latency of grpc server request group by (grpc_code)",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 0,
+                  "value_type": "individual"
+               },
+               "transparent": true,
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "format": "ms",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": 0,
+                     "show": true
+                  },
+                  {
+                     "format": "ms",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": 0,
+                     "show": true
+                  }
+               ]
+            },
+            {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
+               "datasource": null,
+               "description": "Latency of grpc server request group by (instance)",
+               "fill": 0,
+               "gridPos": {
+                  "h": 10,
+                  "w": 12,
+                  "x": 12,
+                  "y": 0
+               },
+               "id": 50,
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": false,
+                  "current": true,
+                  "max": true,
+                  "min": false,
+                  "rightSide": true,
+                  "show": true,
+                  "total": false,
+                  "values": true
+               },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "span": 6,
+               "stack": false,
+               "steppedLine": false,
+               "targets": [
+                  {
+                     "datasource": "Prometheus",
+                     "expr": "1000 * histogram_quantile(0.90000000000000002,sum(rate(grpc_server_handling_seconds_bucket{app=\"reviews\",grpc_type=\"unary\"}[1m])) by (instance,le))",
+                     "format": "time_series",
+                     "intervalFactor": 2,
+                     "legendFormat": "{{instance}}",
+                     "refId": "A"
+                  }
+               ],
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "Latency of grpc server request group by (instance)",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 0,
+                  "value_type": "individual"
+               },
+               "transparent": true,
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "format": "ms",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": 0,
+                     "show": true
+                  },
+                  {
+                     "format": "ms",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": 0,
+                     "show": true
+                  }
+               ]
+            },
+            {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
+               "datasource": null,
+               "description": "Latency of grpc server request group by (grpc_service)",
+               "fill": 0,
+               "gridPos": {
+                  "h": 10,
+                  "w": 12,
+                  "x": 0,
+                  "y": 0
+               },
+               "id": 51,
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": false,
+                  "current": true,
+                  "max": true,
+                  "min": false,
+                  "rightSide": true,
+                  "show": true,
+                  "total": false,
+                  "values": true
+               },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "span": 6,
+               "stack": false,
+               "steppedLine": false,
+               "targets": [
+                  {
+                     "datasource": "Prometheus",
+                     "expr": "1000 * histogram_quantile(0.90000000000000002,sum(rate(grpc_server_handling_seconds_bucket{app=\"reviews\",grpc_type=\"unary\"}[1m])) by (grpc_service,le))",
+                     "format": "time_series",
+                     "intervalFactor": 2,
+                     "legendFormat": "{{grpc_service}}",
+                     "refId": "A"
+                  }
+               ],
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "Latency of grpc server request group by (grpc_service)",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 0,
+                  "value_type": "individual"
+               },
+               "transparent": true,
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "format": "ms",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": 0,
+                     "show": true
+                  },
+                  {
+                     "format": "ms",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": 0,
+                     "show": true
+                  }
+               ]
+            },
+            {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
+               "datasource": null,
+               "description": "Latency of grpc server request group by (grpc_service,grpc_method)",
+               "fill": 0,
+               "gridPos": {
+                  "h": 10,
+                  "w": 12,
+                  "x": 12,
+                  "y": 0
+               },
+               "id": 52,
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": false,
+                  "current": true,
+                  "max": true,
+                  "min": false,
+                  "rightSide": true,
+                  "show": true,
+                  "total": false,
+                  "values": true
+               },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "span": 6,
+               "stack": false,
+               "steppedLine": false,
+               "targets": [
+                  {
+                     "datasource": "Prometheus",
+                     "expr": "1000 * histogram_quantile(0.98999999999999999,sum(rate(grpc_server_handling_seconds_bucket{app=\"reviews\",grpc_type=\"unary\"}[1m])) by (grpc_service,grpc_method,le))",
+                     "format": "time_series",
+                     "intervalFactor": 2,
+                     "legendFormat": "{{grpc_service}}.{{grpc_method}}",
+                     "refId": "A"
+                  }
+               ],
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "Latency of grpc server request group by (grpc_service,grpc_method)",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 0,
+                  "value_type": "individual"
+               },
+               "transparent": true,
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "format": "ms",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": 0,
+                     "show": true
+                  },
+                  {
+                     "format": "ms",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": 0,
+                     "show": true
+                  }
+               ]
+            }
+         ],
+         "repeat": null,
+         "repeatIteration": null,
+         "repeatRowId": null,
+         "showTitle": true,
+         "title": "Grpc server 90%-tile Latency of requests",
+         "titleSize": "h6",
+         "type": "row"
+      },
+      {
+         "collapse": true,
+         "collapsed": true,
+         "gridPos": { },
+         "id": 53,
          "panels": [
             {
                "aliasColors": { },
@@ -3745,7 +4021,7 @@
                   "x": 0,
                   "y": 0
                },
-               "id": 50,
+               "id": 54,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -3832,7 +4108,7 @@
                   "x": 12,
                   "y": 0
                },
-               "id": 51,
+               "id": 55,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -3919,7 +4195,7 @@
                   "x": 0,
                   "y": 0
                },
-               "id": 52,
+               "id": 56,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -4006,7 +4282,7 @@
                   "x": 12,
                   "y": 0
                },
-               "id": 53,
+               "id": 57,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -4092,182 +4368,8 @@
          "collapse": true,
          "collapsed": true,
          "gridPos": { },
-         "id": 54,
+         "id": 58,
          "panels": [
-            {
-               "aliasColors": { },
-               "bars": false,
-               "dashLength": 10,
-               "dashes": false,
-               "datasource": null,
-               "description": "Percentage of grpc client error request group by (grpc_code)",
-               "fill": 0,
-               "gridPos": {
-                  "h": 10,
-                  "w": 12,
-                  "x": 0,
-                  "y": 0
-               },
-               "id": 55,
-               "legend": {
-                  "alignAsTable": true,
-                  "avg": false,
-                  "current": true,
-                  "max": true,
-                  "min": false,
-                  "rightSide": true,
-                  "show": true,
-                  "total": false,
-                  "values": true
-               },
-               "lines": true,
-               "linewidth": 1,
-               "links": [ ],
-               "nullPointMode": "null",
-               "percentage": false,
-               "pointradius": 5,
-               "points": false,
-               "renderer": "flot",
-               "repeat": null,
-               "seriesOverrides": [ ],
-               "spaceLength": 10,
-               "span": 6,
-               "stack": false,
-               "steppedLine": false,
-               "targets": [
-                  {
-                     "datasource": "Prometheus",
-                     "expr": "sum(rate(grpc_client_handled_total{app=\"reviews\",grpc_type=\"unary\",grpc_code!=\"OK\"}[1m])) by (grpc_code)/sum(rate(grpc_client_started_total{app=\"reviews\",grpc_type=\"unary\"}[1m])) by (grpc_code)* 100.0",
-                     "format": "time_series",
-                     "intervalFactor": 2,
-                     "legendFormat": "{{grpc_code}}",
-                     "refId": "A"
-                  }
-               ],
-               "thresholds": [ ],
-               "timeFrom": null,
-               "timeShift": null,
-               "title": "Percentage of grpc client error request group by (grpc_code)",
-               "tooltip": {
-                  "shared": true,
-                  "sort": 0,
-                  "value_type": "individual"
-               },
-               "transparent": true,
-               "type": "graph",
-               "xaxis": {
-                  "buckets": null,
-                  "mode": "time",
-                  "name": null,
-                  "show": true,
-                  "values": [ ]
-               },
-               "yaxes": [
-                  {
-                     "format": "percent",
-                     "label": null,
-                     "logBase": 1,
-                     "max": null,
-                     "min": 0,
-                     "show": true
-                  },
-                  {
-                     "format": "percent",
-                     "label": null,
-                     "logBase": 1,
-                     "max": null,
-                     "min": 0,
-                     "show": true
-                  }
-               ]
-            },
-            {
-               "aliasColors": { },
-               "bars": false,
-               "dashLength": 10,
-               "dashes": false,
-               "datasource": null,
-               "description": "Percentage of grpc client error request group by (instance)",
-               "fill": 0,
-               "gridPos": {
-                  "h": 10,
-                  "w": 12,
-                  "x": 12,
-                  "y": 0
-               },
-               "id": 56,
-               "legend": {
-                  "alignAsTable": true,
-                  "avg": false,
-                  "current": true,
-                  "max": true,
-                  "min": false,
-                  "rightSide": true,
-                  "show": true,
-                  "total": false,
-                  "values": true
-               },
-               "lines": true,
-               "linewidth": 1,
-               "links": [ ],
-               "nullPointMode": "null",
-               "percentage": false,
-               "pointradius": 5,
-               "points": false,
-               "renderer": "flot",
-               "repeat": null,
-               "seriesOverrides": [ ],
-               "spaceLength": 10,
-               "span": 6,
-               "stack": false,
-               "steppedLine": false,
-               "targets": [
-                  {
-                     "datasource": "Prometheus",
-                     "expr": "sum(rate(grpc_client_handled_total{app=\"reviews\",grpc_type=\"unary\",grpc_code!=\"OK\"}[1m])) by (instance)/sum(rate(grpc_client_started_total{app=\"reviews\",grpc_type=\"unary\"}[1m])) by (instance)* 100.0",
-                     "format": "time_series",
-                     "intervalFactor": 2,
-                     "legendFormat": "{{instance}}",
-                     "refId": "A"
-                  }
-               ],
-               "thresholds": [ ],
-               "timeFrom": null,
-               "timeShift": null,
-               "title": "Percentage of grpc client error request group by (instance)",
-               "tooltip": {
-                  "shared": true,
-                  "sort": 0,
-                  "value_type": "individual"
-               },
-               "transparent": true,
-               "type": "graph",
-               "xaxis": {
-                  "buckets": null,
-                  "mode": "time",
-                  "name": null,
-                  "show": true,
-                  "values": [ ]
-               },
-               "yaxes": [
-                  {
-                     "format": "percent",
-                     "label": null,
-                     "logBase": 1,
-                     "max": null,
-                     "min": 0,
-                     "show": true
-                  },
-                  {
-                     "format": "percent",
-                     "label": null,
-                     "logBase": 1,
-                     "max": null,
-                     "min": 0,
-                     "show": true
-                  }
-               ]
-            },
             {
                "aliasColors": { },
                "bars": false,
@@ -4282,7 +4384,7 @@
                   "x": 0,
                   "y": 0
                },
-               "id": 57,
+               "id": 59,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -4369,7 +4471,7 @@
                   "x": 12,
                   "y": 0
                },
-               "id": 58,
+               "id": 60,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -4441,6 +4543,93 @@
                      "show": true
                   }
                ]
+            },
+            {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
+               "datasource": null,
+               "description": "Percentage of grpc client error request group by (instance)",
+               "fill": 0,
+               "gridPos": {
+                  "h": 10,
+                  "w": 12,
+                  "x": 0,
+                  "y": 0
+               },
+               "id": 61,
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": false,
+                  "current": true,
+                  "max": true,
+                  "min": false,
+                  "rightSide": true,
+                  "show": true,
+                  "total": false,
+                  "values": true
+               },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "span": 6,
+               "stack": false,
+               "steppedLine": false,
+               "targets": [
+                  {
+                     "datasource": "Prometheus",
+                     "expr": "sum(rate(grpc_client_handled_total{app=\"reviews\",grpc_type=\"unary\",grpc_code!=\"OK\"}[1m])) by (instance)/sum(rate(grpc_client_started_total{app=\"reviews\",grpc_type=\"unary\"}[1m])) by (instance)* 100.0",
+                     "format": "time_series",
+                     "intervalFactor": 2,
+                     "legendFormat": "{{instance}}",
+                     "refId": "A"
+                  }
+               ],
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "Percentage of grpc client error request group by (instance)",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 0,
+                  "value_type": "individual"
+               },
+               "transparent": true,
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "format": "percent",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": 0,
+                     "show": true
+                  },
+                  {
+                     "format": "percent",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": 0,
+                     "show": true
+                  }
+               ]
             }
          ],
          "repeat": null,
@@ -4455,7 +4644,7 @@
          "collapse": true,
          "collapsed": true,
          "gridPos": { },
-         "id": 59,
+         "id": 62,
          "panels": [
             {
                "aliasColors": { },
@@ -4471,7 +4660,7 @@
                   "x": 0,
                   "y": 0
                },
-               "id": 60,
+               "id": 63,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -4558,7 +4747,7 @@
                   "x": 12,
                   "y": 0
                },
-               "id": 61,
+               "id": 64,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -4645,7 +4834,7 @@
                   "x": 0,
                   "y": 0
                },
-               "id": 62,
+               "id": 65,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -4732,7 +4921,7 @@
                   "x": 12,
                   "y": 0
                },
-               "id": 63,
+               "id": 66,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -4818,7 +5007,7 @@
          "collapse": true,
          "collapsed": true,
          "gridPos": { },
-         "id": 64,
+         "id": 67,
          "panels": [
             {
                "aliasColors": { },
@@ -4834,7 +5023,7 @@
                   "x": 0,
                   "y": 0
                },
-               "id": 65,
+               "id": 68,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -4921,7 +5110,7 @@
                   "x": 12,
                   "y": 0
                },
-               "id": 66,
+               "id": 69,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -5008,7 +5197,7 @@
                   "x": 0,
                   "y": 0
                },
-               "id": 67,
+               "id": 70,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -5095,7 +5284,7 @@
                   "x": 12,
                   "y": 0
                },
-               "id": 68,
+               "id": 71,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -5181,7 +5370,7 @@
          "collapse": true,
          "collapsed": true,
          "gridPos": { },
-         "id": 69,
+         "id": 72,
          "panels": [
             {
                "aliasColors": { },
@@ -5197,7 +5386,7 @@
                   "x": 0,
                   "y": 0
                },
-               "id": 70,
+               "id": 73,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -5284,7 +5473,7 @@
                   "x": 12,
                   "y": 0
                },
-               "id": 71,
+               "id": 74,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -5371,7 +5560,7 @@
                   "x": 0,
                   "y": 0
                },
-               "id": 72,
+               "id": 75,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -5458,7 +5647,7 @@
                   "x": 12,
                   "y": 0
                },
-               "id": 73,
+               "id": 76,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -5544,95 +5733,8 @@
          "collapse": true,
          "collapsed": true,
          "gridPos": { },
-         "id": 74,
+         "id": 77,
          "panels": [
-            {
-               "aliasColors": { },
-               "bars": false,
-               "dashLength": 10,
-               "dashes": false,
-               "datasource": null,
-               "description": "Percentage of http error request group by (grpc_code)",
-               "fill": 0,
-               "gridPos": {
-                  "h": 10,
-                  "w": 12,
-                  "x": 0,
-                  "y": 0
-               },
-               "id": 75,
-               "legend": {
-                  "alignAsTable": true,
-                  "avg": false,
-                  "current": true,
-                  "max": true,
-                  "min": false,
-                  "rightSide": true,
-                  "show": true,
-                  "total": false,
-                  "values": true
-               },
-               "lines": true,
-               "linewidth": 1,
-               "links": [ ],
-               "nullPointMode": "null",
-               "percentage": false,
-               "pointradius": 5,
-               "points": false,
-               "renderer": "flot",
-               "repeat": null,
-               "seriesOverrides": [ ],
-               "spaceLength": 10,
-               "span": 6,
-               "stack": false,
-               "steppedLine": false,
-               "targets": [
-                  {
-                     "datasource": "Prometheus",
-                     "expr": "sum(rate(http_server_requests_seconds_count{app=\"reviews\",status!=\"200\"}[1m])) by (grpc_code)/sum(rate(http_server_requests_seconds_count{app=\"reviews\"}[1m])) by (grpc_code)* 100.0",
-                     "format": "time_series",
-                     "intervalFactor": 2,
-                     "legendFormat": "{{grpc_code}}",
-                     "refId": "A"
-                  }
-               ],
-               "thresholds": [ ],
-               "timeFrom": null,
-               "timeShift": null,
-               "title": "Percentage of http error request group by (grpc_code) ",
-               "tooltip": {
-                  "shared": true,
-                  "sort": 0,
-                  "value_type": "individual"
-               },
-               "transparent": true,
-               "type": "graph",
-               "xaxis": {
-                  "buckets": null,
-                  "mode": "time",
-                  "name": null,
-                  "show": true,
-                  "values": [ ]
-               },
-               "yaxes": [
-                  {
-                     "format": "percent",
-                     "label": null,
-                     "logBase": 1,
-                     "max": null,
-                     "min": 0,
-                     "show": true
-                  },
-                  {
-                     "format": "percent",
-                     "label": null,
-                     "logBase": 1,
-                     "max": null,
-                     "min": 0,
-                     "show": true
-                  }
-               ]
-            },
             {
                "aliasColors": { },
                "bars": false,
@@ -5644,10 +5746,10 @@
                "gridPos": {
                   "h": 10,
                   "w": 12,
-                  "x": 12,
+                  "x": 0,
                   "y": 0
                },
-               "id": 76,
+               "id": 78,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -5726,94 +5828,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": null,
-               "description": "Percentage of http error request group by (grpc_service)",
-               "fill": 0,
-               "gridPos": {
-                  "h": 10,
-                  "w": 12,
-                  "x": 0,
-                  "y": 0
-               },
-               "id": 77,
-               "legend": {
-                  "alignAsTable": true,
-                  "avg": false,
-                  "current": true,
-                  "max": true,
-                  "min": false,
-                  "rightSide": true,
-                  "show": true,
-                  "total": false,
-                  "values": true
-               },
-               "lines": true,
-               "linewidth": 1,
-               "links": [ ],
-               "nullPointMode": "null",
-               "percentage": false,
-               "pointradius": 5,
-               "points": false,
-               "renderer": "flot",
-               "repeat": null,
-               "seriesOverrides": [ ],
-               "spaceLength": 10,
-               "span": 6,
-               "stack": false,
-               "steppedLine": false,
-               "targets": [
-                  {
-                     "datasource": "Prometheus",
-                     "expr": "sum(rate(http_server_requests_seconds_count{app=\"reviews\",status!=\"200\"}[1m])) by (grpc_service)/sum(rate(http_server_requests_seconds_count{app=\"reviews\"}[1m])) by (grpc_service)* 100.0",
-                     "format": "time_series",
-                     "intervalFactor": 2,
-                     "legendFormat": "{{grpc_service}}",
-                     "refId": "A"
-                  }
-               ],
-               "thresholds": [ ],
-               "timeFrom": null,
-               "timeShift": null,
-               "title": "Percentage of http error request group by (grpc_service) ",
-               "tooltip": {
-                  "shared": true,
-                  "sort": 0,
-                  "value_type": "individual"
-               },
-               "transparent": true,
-               "type": "graph",
-               "xaxis": {
-                  "buckets": null,
-                  "mode": "time",
-                  "name": null,
-                  "show": true,
-                  "values": [ ]
-               },
-               "yaxes": [
-                  {
-                     "format": "percent",
-                     "label": null,
-                     "logBase": 1,
-                     "max": null,
-                     "min": 0,
-                     "show": true
-                  },
-                  {
-                     "format": "percent",
-                     "label": null,
-                     "logBase": 1,
-                     "max": null,
-                     "min": 0,
-                     "show": true
-                  }
-               ]
-            },
-            {
-               "aliasColors": { },
-               "bars": false,
-               "dashLength": 10,
-               "dashes": false,
-               "datasource": null,
-               "description": "Percentage of http error request group by (grpc_service,grpc_method)",
+               "description": "Percentage of http error request group by (method,uri)",
                "fill": 0,
                "gridPos": {
                   "h": 10,
@@ -5821,7 +5836,7 @@
                   "x": 12,
                   "y": 0
                },
-               "id": 78,
+               "id": 79,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -5850,17 +5865,17 @@
                "targets": [
                   {
                      "datasource": "Prometheus",
-                     "expr": "sum(rate(http_server_requests_seconds_count{app=\"reviews\",status!=\"200\"}[1m])) by (grpc_service,grpc_method)/sum(rate(http_server_requests_seconds_count{app=\"reviews\"}[1m])) by (grpc_service,grpc_method)* 100.0",
+                     "expr": "sum(rate(http_server_requests_seconds_count{app=\"reviews\",status!=\"200\"}[1m])) by (method,uri)/sum(rate(http_server_requests_seconds_count{app=\"reviews\"}[1m])) by (method,uri)* 100.0",
                      "format": "time_series",
                      "intervalFactor": 2,
-                     "legendFormat": "{{grpc_service}}.{{grpc_method}}",
+                     "legendFormat": "{{method}}.{{uri}}",
                      "refId": "A"
                   }
                ],
                "thresholds": [ ],
                "timeFrom": null,
                "timeShift": null,
-               "title": "Percentage of http error request group by (grpc_service,grpc_method) ",
+               "title": "Percentage of http error request group by (method,uri) ",
                "tooltip": {
                   "shared": true,
                   "sort": 0,
@@ -5907,7 +5922,7 @@
          "collapse": true,
          "collapsed": true,
          "gridPos": { },
-         "id": 79,
+         "id": 80,
          "panels": [
             {
                "aliasColors": { },
@@ -5923,7 +5938,7 @@
                   "x": 0,
                   "y": 0
                },
-               "id": 80,
+               "id": 81,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -5952,7 +5967,7 @@
                "targets": [
                   {
                      "datasource": "Prometheus",
-                     "expr": "1000 * histogram_quantile(0.98999999999999999,sum(rate(http_server_seconds_bucket{app=\"reviews\"}[1m])) by (grpc_code,le))",
+                     "expr": "1000 * histogram_quantile(0.98999999999999999,sum(rate(http_server_requests_seconds_bucket{app=\"reviews\"}[1m])) by (grpc_code,le))",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{grpc_code}}",
@@ -6010,7 +6025,7 @@
                   "x": 12,
                   "y": 0
                },
-               "id": 81,
+               "id": 82,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -6039,7 +6054,7 @@
                "targets": [
                   {
                      "datasource": "Prometheus",
-                     "expr": "1000 * histogram_quantile(0.98999999999999999,sum(rate(http_server_seconds_bucket{app=\"reviews\"}[1m])) by (instance,le))",
+                     "expr": "1000 * histogram_quantile(0.98999999999999999,sum(rate(http_server_requests_seconds_bucket{app=\"reviews\"}[1m])) by (instance,le))",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{instance}}",
@@ -6097,7 +6112,7 @@
                   "x": 0,
                   "y": 0
                },
-               "id": 82,
+               "id": 83,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -6126,7 +6141,7 @@
                "targets": [
                   {
                      "datasource": "Prometheus",
-                     "expr": "1000 * histogram_quantile(0.98999999999999999,sum(rate(http_server_seconds_bucket{app=\"reviews\"}[1m])) by (grpc_service,le))",
+                     "expr": "1000 * histogram_quantile(0.98999999999999999,sum(rate(http_server_requests_seconds_bucket{app=\"reviews\"}[1m])) by (grpc_service,le))",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{grpc_service}}",
@@ -6184,7 +6199,7 @@
                   "x": 12,
                   "y": 0
                },
-               "id": 83,
+               "id": 84,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -6213,7 +6228,7 @@
                "targets": [
                   {
                      "datasource": "Prometheus",
-                     "expr": "1000 * histogram_quantile(0.98999999999999999,sum(rate(http_server_seconds_bucket{app=\"reviews\"}[1m])) by (grpc_service,grpc_method,le))",
+                     "expr": "1000 * histogram_quantile(0.98999999999999999,sum(rate(http_server_requests_seconds_bucket{app=\"reviews\"}[1m])) by (grpc_service,grpc_method,le))",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{grpc_service}}.{{grpc_method}}",
@@ -6270,7 +6285,7 @@
          "collapse": true,
          "collapsed": true,
          "gridPos": { },
-         "id": 84,
+         "id": 85,
          "panels": [
             {
                "aliasColors": { },
@@ -6286,7 +6301,7 @@
                   "x": 0,
                   "y": 0
                },
-               "id": 85,
+               "id": 86,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -6315,7 +6330,7 @@
                "targets": [
                   {
                      "datasource": "Prometheus",
-                     "expr": "1000 * histogram_quantile(0.90000000000000002,sum(rate(http_server_seconds_bucket{app=\"reviews\"}[1m])) by (grpc_code,le))",
+                     "expr": "1000 * histogram_quantile(0.90000000000000002,sum(rate(http_server_requests_seconds_bucket{app=\"reviews\"}[1m])) by (grpc_code,le))",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{grpc_code}}",
@@ -6373,7 +6388,7 @@
                   "x": 12,
                   "y": 0
                },
-               "id": 86,
+               "id": 87,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -6402,7 +6417,7 @@
                "targets": [
                   {
                      "datasource": "Prometheus",
-                     "expr": "1000 * histogram_quantile(0.90000000000000002,sum(rate(http_server_seconds_bucket{app=\"reviews\"}[1m])) by (instance,le))",
+                     "expr": "1000 * histogram_quantile(0.90000000000000002,sum(rate(http_server_requests_seconds_bucket{app=\"reviews\"}[1m])) by (instance,le))",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{instance}}",
@@ -6460,7 +6475,7 @@
                   "x": 0,
                   "y": 0
                },
-               "id": 87,
+               "id": 88,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -6489,7 +6504,7 @@
                "targets": [
                   {
                      "datasource": "Prometheus",
-                     "expr": "1000 * histogram_quantile(0.90000000000000002,sum(rate(http_server_seconds_bucket{app=\"reviews\"}[1m])) by (grpc_service,le))",
+                     "expr": "1000 * histogram_quantile(0.90000000000000002,sum(rate(http_server_requests_seconds_bucket{app=\"reviews\"}[1m])) by (grpc_service,le))",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{grpc_service}}",
@@ -6547,7 +6562,7 @@
                   "x": 12,
                   "y": 0
                },
-               "id": 88,
+               "id": 89,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -6576,7 +6591,7 @@
                "targets": [
                   {
                      "datasource": "Prometheus",
-                     "expr": "1000 * histogram_quantile(0.90000000000000002,sum(rate(http_server_seconds_bucket{app=\"reviews\"}[1m])) by (grpc_service,grpc_method,le))",
+                     "expr": "1000 * histogram_quantile(0.90000000000000002,sum(rate(http_server_requests_seconds_bucket{app=\"reviews\"}[1m])) by (grpc_service,grpc_method,le))",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{grpc_service}}.{{grpc_method}}",
