@@ -19,7 +19,7 @@
 * **Prometheus**: http://localhost:9090/graph
 
 
-## 预览
+## 截图
 
 Grafana Dashboard,可以自动生成!
 
