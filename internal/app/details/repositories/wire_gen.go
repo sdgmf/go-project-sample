@@ -3,7 +3,7 @@
 //go:generate wire
 //+build !wireinject
 
-package repositorys
+package repositories
 
 import (
 	"github.com/google/wire"
@@ -14,7 +14,7 @@ import (
 
 // Injectors from wire.go:
 
-func CreateRatingRepository(f string) (RatingsRepository, error) {
+func CreateDetailRepository(f string) (DetailsRepository, error) {
 	viper, err := config.New(f)
 	if err != nil {
 		return nil, err
@@ -35,8 +35,8 @@ func CreateRatingRepository(f string) (RatingsRepository, error) {
 	if err != nil {
 		return nil, err
 	}
-	ratingsRepository := NewMysqlRatingsRepository(logger, db)
-	return ratingsRepository, nil
+	detailsRepository := NewMysqlDetailsRepository(logger, db)
+	return detailsRepository, nil
 }
 
 // wire.go:

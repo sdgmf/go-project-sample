@@ -7,7 +7,7 @@ package services
 
 import (
 	"github.com/google/wire"
-	"github.com/sdgmf/go-project-sample/internal/app/ratings/repositorys"
+	"github.com/sdgmf/go-project-sample/internal/app/ratings/repositories"
 	"github.com/sdgmf/go-project-sample/internal/pkg/config"
 	"github.com/sdgmf/go-project-sample/internal/pkg/database"
 	"github.com/sdgmf/go-project-sample/internal/pkg/log"
@@ -15,7 +15,7 @@ import (
 
 // Injectors from wire.go:
 
-func CreateRatingsService(cf string, sto repositorys.RatingsRepository) (RatingsService, error) {
+func CreateRatingsService(cf string, sto repositories.RatingsRepository) (RatingsService, error) {
 	viper, err := config.New(cf)
 	if err != nil {
 		return nil, err

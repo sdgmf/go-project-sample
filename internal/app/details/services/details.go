@@ -4,7 +4,7 @@ import (
 	"github.com/pkg/errors"
 	"go.uber.org/zap"
 	"github.com/sdgmf/go-project-sample/internal/pkg/models"
-	"github.com/sdgmf/go-project-sample/internal/app/details/repositorys"
+	"github.com/sdgmf/go-project-sample/internal/app/details/repositories"
 )
 
 type DetailsService interface {
@@ -13,10 +13,10 @@ type DetailsService interface {
 
 type DefaultDetailsService struct {
 	logger     *zap.Logger
-	Repository repositorys.DetailsRepository
+	Repository repositories.DetailsRepository
 }
 
-func NewDetailService(logger *zap.Logger, Repository repositorys.DetailsRepository) DetailsService {
+func NewDetailService(logger *zap.Logger, Repository repositories.DetailsRepository) DetailsService {
 	return &DefaultDetailsService{
 		logger:  logger.With(zap.String("type","DefaultDetailsService")),
 		Repository: Repository,

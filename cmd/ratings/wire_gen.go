@@ -10,7 +10,7 @@ import (
 	"github.com/sdgmf/go-project-sample/internal/app/ratings"
 	"github.com/sdgmf/go-project-sample/internal/app/ratings/controllers"
 	"github.com/sdgmf/go-project-sample/internal/app/ratings/grpcservers"
-	"github.com/sdgmf/go-project-sample/internal/app/ratings/repositorys"
+	"github.com/sdgmf/go-project-sample/internal/app/ratings/repositories"
 	"github.com/sdgmf/go-project-sample/internal/app/ratings/services"
 	"github.com/sdgmf/go-project-sample/internal/pkg/app"
 	"github.com/sdgmf/go-project-sample/internal/pkg/config"
@@ -53,7 +53,7 @@ func CreateApp(cf string) (*app.Application, error) {
 	if err != nil {
 		return nil, err
 	}
-	ratingsRepository := repositorys.NewMysqlRatingsRepository(logger, db)
+	ratingsRepository := repositories.NewMysqlRatingsRepository(logger, db)
 	ratingsService := services.NewRatingService(logger, ratingsRepository)
 	ratingsController := controllers.NewRatingsController(logger, ratingsService)
 	initControllers := controllers.CreateInitControllersFn(ratingsController)
@@ -100,4 +100,4 @@ func CreateApp(cf string) (*app.Application, error) {
 
 // wire.go:
 
-var providerSet = wire.NewSet(log.ProviderSet, config.ProviderSet, database.ProviderSet, services.ProviderSet, consul.ProviderSet, jaeger.ProviderSet, http.ProviderSet, grpc.ProviderSet, ratings.ProviderSet, repositorys.ProviderSet, controllers.ProviderSet, grpcservers.ProviderSet)
+var providerSet = wire.NewSet(log.ProviderSet, config.ProviderSet, database.ProviderSet, services.ProviderSet, consul.ProviderSet, jaeger.ProviderSet, http.ProviderSet, grpc.ProviderSet, ratings.ProviderSet, repositories.ProviderSet, controllers.ProviderSet, grpcservers.ProviderSet)

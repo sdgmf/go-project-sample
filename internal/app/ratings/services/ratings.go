@@ -2,7 +2,7 @@ package services
 
 import (
 	"github.com/pkg/errors"
-	"github.com/sdgmf/go-project-sample/internal/app/ratings/repositorys"
+	"github.com/sdgmf/go-project-sample/internal/app/ratings/repositories"
 	"github.com/sdgmf/go-project-sample/internal/pkg/models"
 	"go.uber.org/zap"
 )
@@ -13,10 +13,10 @@ type RatingsService interface {
 
 type DefaultRatingsService struct {
 	logger     *zap.Logger
-	Repository repositorys.RatingsRepository
+	Repository repositories.RatingsRepository
 }
 
-func NewRatingService(logger *zap.Logger, Repository repositorys.RatingsRepository) RatingsService {
+func NewRatingService(logger *zap.Logger, Repository repositories.RatingsRepository) RatingsService {
 	return &DefaultRatingsService{
 		logger:     logger.With(zap.String("type", "DefaultRatingsService")),
 		Repository: Repository,

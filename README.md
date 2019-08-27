@@ -1,5 +1,8 @@
 
 通过一个完整的项目的示例，从项目的结构、分层思想、依赖注入、错误处理、单元测试、服务治理、框架选择等方面介绍Go语言项目的最佳实践经验.
+项目分为products、details、ratings、reviews四个微服务,依赖关系如下.
+
+![dependency](https://sdgmf.github.io/images/goproject_dep.jpg)
 
 ## 快速开始
 
@@ -15,5 +18,19 @@
 * **jaeger**: http://localhost:16686/search
 * **Prometheus**: http://localhost:9090/graph
 
-## Document
-https://sdgmf.github.io/goproject/
+
+## 预览
+
+Grafana Dashboard,可以自动生成!
+
+![dashboard](https://sdgmf.github.io/images/grafana_dashboard.jpg)
+
+![dashboard1](https://sdgmf.github.io/images/grafana_dashboard1.jpg)
+
+调用链跟踪
+
+![jaeger](https://sdgmf.github.io/images/jaeger.jpg)
+
+![jaeger](https://sdgmf.github.io/images/jaeger1.jpg)
+
+## [中文文档](https://sdgmf.github.io/goproject/)

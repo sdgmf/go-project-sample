@@ -8,7 +8,7 @@ import (
 	"github.com/sdgmf/go-project-sample/internal/app/ratings/controllers"
 	"github.com/sdgmf/go-project-sample/internal/app/ratings/grpcservers"
 	"github.com/sdgmf/go-project-sample/internal/app/ratings/services"
-	"github.com/sdgmf/go-project-sample/internal/app/ratings/repositorys"
+	"github.com/sdgmf/go-project-sample/internal/app/ratings/repositories"
 	"github.com/sdgmf/go-project-sample/internal/pkg/app"
 	"github.com/sdgmf/go-project-sample/internal/pkg/config"
 	"github.com/sdgmf/go-project-sample/internal/pkg/consul"
@@ -30,7 +30,7 @@ var providerSet = wire.NewSet(
 	http.ProviderSet,
 	grpc.ProviderSet,
 	ratings.ProviderSet,
-	repositorys.ProviderSet,
+	repositories.ProviderSet,
 	controllers.ProviderSet,
 	grpcservers.ProviderSet,
 )

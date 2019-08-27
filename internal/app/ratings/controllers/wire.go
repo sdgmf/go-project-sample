@@ -8,7 +8,7 @@ import (
 	"github.com/sdgmf/go-project-sample/internal/pkg/database"
 	"github.com/sdgmf/go-project-sample/internal/pkg/log"
 	"github.com/sdgmf/go-project-sample/internal/app/ratings/services"
-	"github.com/sdgmf/go-project-sample/internal/app/ratings/repositorys"
+	"github.com/sdgmf/go-project-sample/internal/app/ratings/repositories"
 )
 
 var testProviderSet = wire.NewSet(
@@ -16,11 +16,11 @@ var testProviderSet = wire.NewSet(
 	config.ProviderSet,
 	database.ProviderSet,
 	services.ProviderSet,
-	//repositorys.ProviderSet,
+	//repositories.ProviderSet,
 	ProviderSet,
 )
 
 
-func CreateRatingsController(cf string, sto repositorys.RatingsRepository) (*RatingsController, error) {
+func CreateRatingsController(cf string, sto repositories.RatingsRepository) (*RatingsController, error) {
 	panic(wire.Build(testProviderSet))
 }

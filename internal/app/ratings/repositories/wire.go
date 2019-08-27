@@ -1,6 +1,6 @@
 // +build wireinject
 
-package repositorys
+package repositories
 
 import (
 	"github.com/google/wire"
@@ -18,7 +18,7 @@ var testProviderSet = wire.NewSet(
 	ProviderSet,
 )
 
-func CreateReviewRepository(f string) (ReviewsRepository, error) {
+func CreateRatingRepository(f string) (RatingsRepository, error) {
 	panic(wire.Build(testProviderSet))
 }
 

@@ -7,7 +7,7 @@ package controllers
 
 import (
 	"github.com/google/wire"
-	"github.com/sdgmf/go-project-sample/internal/app/details/repositorys"
+	"github.com/sdgmf/go-project-sample/internal/app/details/repositories"
 	"github.com/sdgmf/go-project-sample/internal/app/details/services"
 	"github.com/sdgmf/go-project-sample/internal/pkg/config"
 	"github.com/sdgmf/go-project-sample/internal/pkg/database"
@@ -16,7 +16,7 @@ import (
 
 // Injectors from wire.go:
 
-func CreateDetailsController(cf string, sto repositorys.DetailsRepository) (*DetailsController, error) {
+func CreateDetailsController(cf string, sto repositories.DetailsRepository) (*DetailsController, error) {
 	viper, err := config.New(cf)
 	if err != nil {
 		return nil, err

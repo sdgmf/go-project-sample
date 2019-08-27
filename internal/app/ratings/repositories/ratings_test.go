@@ -1,4 +1,4 @@
-package repositorys
+package repositories
 
 import (
 	"flag"
@@ -6,12 +6,12 @@ import (
 	"testing"
 )
 
-var configFile = flag.String("f", "details.yml", "set config file which viper will loading.")
+var configFile = flag.String("f", "ratings.yml", "set config file which viper will loading.")
 
-func TestDetailsRepository_Get(t *testing.T) {
+func TestRatingsRepository_Get(t *testing.T) {
 	flag.Parse()
 
-	sto, err := CreateDetailRepository(*configFile)
+	sto, err := CreateRatingRepository(*configFile)
 	if err != nil {
 		t.Fatalf("create product Repository error,%+v", err)
 	}
@@ -21,9 +21,9 @@ func TestDetailsRepository_Get(t *testing.T) {
 		id       uint64
 		expected bool
 	}{
-		{"id=1", 1, true},
-		{"id=2", 2, true},
-		{"id=3", 3, true},
+		{"1+1", 1, true},
+		{"2+3", 2, true},
+		{"4+5", 3, true},
 	}
 
 	for _, test := range tests {

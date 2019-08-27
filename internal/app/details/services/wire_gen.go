@@ -7,7 +7,7 @@ package services
 
 import (
 	"github.com/google/wire"
-	"github.com/sdgmf/go-project-sample/internal/app/details/repositorys"
+	"github.com/sdgmf/go-project-sample/internal/app/details/repositories"
 	"github.com/sdgmf/go-project-sample/internal/pkg/config"
 	"github.com/sdgmf/go-project-sample/internal/pkg/database"
 	"github.com/sdgmf/go-project-sample/internal/pkg/log"
@@ -15,7 +15,7 @@ import (
 
 // Injectors from wire.go:
 
-func CreateDetailsService(cf string, sto repositorys.DetailsRepository) (DetailsService, error) {
+func CreateDetailsService(cf string, sto repositories.DetailsRepository) (DetailsService, error) {
 	viper, err := config.New(cf)
 	if err != nil {
 		return nil, err

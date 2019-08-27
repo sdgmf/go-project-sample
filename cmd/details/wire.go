@@ -6,7 +6,7 @@ import (
 	"github.com/google/wire"
 	"github.com/sdgmf/go-project-sample/internal/app/details/controllers"
 	"github.com/sdgmf/go-project-sample/internal/app/details/grpcservers"
-	"github.com/sdgmf/go-project-sample/internal/app/details/repositorys"
+	"github.com/sdgmf/go-project-sample/internal/app/details/repositories"
 	"github.com/sdgmf/go-project-sample/internal/app/details/services"
 	"github.com/sdgmf/go-project-sample/internal/app/details"
 	"github.com/sdgmf/go-project-sample/internal/pkg/app"
@@ -24,7 +24,7 @@ var providerSet = wire.NewSet(
 	config.ProviderSet,
 	database.ProviderSet,
 	services.ProviderSet,
-	repositorys.ProviderSet,
+	repositories.ProviderSet,
 	consul.ProviderSet,
 	jaeger.ProviderSet,
 	http.ProviderSet,
