@@ -9,6 +9,8 @@
 ```bash
     git clone https://github.com/sdgmf/go-project-sample.git
     cd go-project-sample
+    git submodule init
+    git submodule update
     make docker-compose
 ```
 
