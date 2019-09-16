@@ -4,6 +4,10 @@
 
 ![dependency](https://sdgmf.github.io/images/goproject_dep.jpg)
 
+## 准备
+
+安装docker,go,[jsonnet](https://jsonnet.org/)
+
 ## 快速开始
 
 ```bash
