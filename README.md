@@ -9,12 +9,33 @@
 安装docker,go,[jsonnet](https://jsonnet.org/)
 
 ## 快速开始
-
+下载项目
 ```bash
     git clone https://github.com/sdgmf/go-project-sample.git
     cd go-project-sample
     git submodule init
     git submodule update
+```
+编辑邮箱配置，发送告警邮件
+
+```yaml
+# configs/prometheus/alertmanager.yml 
+global:
+  resolve_timeout: 10s
+  smtp_from: xxx@xxx
+  smtp_smarthost: ip:port
+  smtp_auth_username: xxx@xxx
+  smtp_auth_password: xxx
+  smtp_auth_identity: xxx@xxx
+```
+```jsonnet
+// scripts/prometheus/rules.jsonnet
+// 接收告警的邮箱地址
+local email = "xxx@xxx";
+```
+
+启动项目
+```bash
     make docker-compose
 ```
 
@@ -23,20 +44,29 @@
 * **grafana**: http://localhost:3000/ 
 * **jaeger**: http://localhost:16686/search
 * **Prometheus**: http://localhost:9090/graph
+* **AlertManager**: http://localhost:9093
 
 
 ## 截图
 
 Grafana Dashboard,可以自动生成!
 
-![dashboard](https://sdgmf.github.io/images/grafana_dashboard.jpg)
+![dashboard](./doc/images/grafana_dashboard.jpg)
 
-![dashboard1](https://sdgmf.github.io/images/grafana_dashboard1.jpg)
+![dashboard1](./doc/images/grafana_dashboard1.jpg)
+
+Prometheus Alert 监控告警,自动生成！
+
+![alert](./doc/images/alert.jpg)
+
+![alert](./doc/images/alert1.jpg)
 
 调用链跟踪
 
-![jaeger](https://sdgmf.github.io/images/jaeger.jpg)
+![jaeger](./doc/images/jaeger.jpg)
 
-![jaeger](https://sdgmf.github.io/images/jaeger1.jpg)
+![jaeger](./doc/images/jaeger1.jpg)
+
+
 
 ## [中文文档](https://sdgmf.github.io/goproject/)

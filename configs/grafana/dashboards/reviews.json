@@ -79,7 +79,7 @@
                "tableColumn": "",
                "targets": [
                   {
-                     "expr": "sum(up{app=\"ratings\"})",
+                     "expr": "sum(up{app=\"reviews\"})",
                      "format": "time_series",
                      "instant": true,
                      "intervalFactor": 2,
@@ -163,7 +163,7 @@
                "tableColumn": "",
                "targets": [
                   {
-                     "expr": "sum(rate(grpc_server_handled_total{app=\"ratings\",grpc_type=\"unary\"}[1m]))",
+                     "expr": "sum(rate(grpc_server_handled_total{app=\"reviews\",grpc_type=\"unary\"}[1m]))",
                      "format": "time_series",
                      "instant": true,
                      "intervalFactor": 2,
@@ -247,7 +247,7 @@
                "tableColumn": "",
                "targets": [
                   {
-                     "expr": "sum(rate(grpc_server_handled_total{app=\"ratings\",grpc_type=\"unary\",grpc_code!=\"OK\"}[1m])) /sum(rate(grpc_server_started_total{app=\"ratings\",grpc_type=\"unary\"}[1m])) * 100.0",
+                     "expr": "sum(rate(grpc_server_handled_total{app=\"reviews\",grpc_type=\"unary\",grpc_code!=\"OK\"}[1m])) /sum(rate(grpc_server_started_total{app=\"reviews\",grpc_type=\"unary\"}[1m])) * 100.0",
                      "format": "time_series",
                      "instant": true,
                      "intervalFactor": 2,
@@ -331,7 +331,7 @@
                "tableColumn": "",
                "targets": [
                   {
-                     "expr": "sum(rate(http_server_requests_seconds_count{app=\"ratings\"}[1m]))",
+                     "expr": "sum(rate(http_server_requests_seconds_count{app=\"reviews\"}[1m]))",
                      "format": "time_series",
                      "instant": true,
                      "intervalFactor": 2,
@@ -415,7 +415,7 @@
                "tableColumn": "",
                "targets": [
                   {
-                     "expr": "sum(rate(http_server_requests_seconds_count{app=\"ratings\",code!=\"200\"}[1m])) /sum(rate(http_server_requests_seconds_count{app=\"ratings\"}[1m])) * 100.0",
+                     "expr": "sum(rate(http_server_requests_seconds_count{app=\"reviews\",code!=\"200\"}[1m])) /sum(rate(http_server_requests_seconds_count{app=\"reviews\"}[1m])) * 100.0",
                      "format": "time_series",
                      "instant": true,
                      "intervalFactor": 2,
@@ -495,7 +495,7 @@
                "targets": [
                   {
                      "datasource": "Prometheus",
-                     "expr": "go_goroutines{app=\"ratings\"}",
+                     "expr": "go_goroutines{app=\"reviews\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{instance}}",
@@ -582,7 +582,7 @@
                "targets": [
                   {
                      "datasource": "Prometheus",
-                     "expr": "go_memstats_alloc_bytes{app=\"ratings\"}",
+                     "expr": "go_memstats_alloc_bytes{app=\"reviews\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{instance}}",
@@ -669,7 +669,7 @@
                "targets": [
                   {
                      "datasource": "Prometheus",
-                     "expr": "go_memstats_alloc_bytes_total{app=\"ratings\"}",
+                     "expr": "go_memstats_alloc_bytes_total{app=\"reviews\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{instance}}",
@@ -756,7 +756,7 @@
                "targets": [
                   {
                      "datasource": "Prometheus",
-                     "expr": "go_memstats_buck_hash_sys_bytes{app=\"ratings\"}",
+                     "expr": "go_memstats_buck_hash_sys_bytes{app=\"reviews\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{instance}}",
@@ -843,7 +843,7 @@
                "targets": [
                   {
                      "datasource": "Prometheus",
-                     "expr": "go_memstats_frees_total{app=\"ratings\"}",
+                     "expr": "go_memstats_frees_total{app=\"reviews\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{instance}}",
@@ -930,7 +930,7 @@
                "targets": [
                   {
                      "datasource": "Prometheus",
-                     "expr": "go_memstats_gc_cpu_fraction{app=\"ratings\"}",
+                     "expr": "go_memstats_gc_cpu_fraction{app=\"reviews\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{instance}}",
@@ -1017,7 +1017,7 @@
                "targets": [
                   {
                      "datasource": "Prometheus",
-                     "expr": "go_memstats_gc_sys_bytes{app=\"ratings\"}",
+                     "expr": "go_memstats_gc_sys_bytes{app=\"reviews\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{instance}}",
@@ -1104,7 +1104,7 @@
                "targets": [
                   {
                      "datasource": "Prometheus",
-                     "expr": "go_memstats_heap_alloc_bytes{app=\"ratings\"}",
+                     "expr": "go_memstats_heap_alloc_bytes{app=\"reviews\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{instance}}",
@@ -1191,7 +1191,7 @@
                "targets": [
                   {
                      "datasource": "Prometheus",
-                     "expr": "go_memstats_heap_idle_bytes{app=\"ratings\"}",
+                     "expr": "go_memstats_heap_idle_bytes{app=\"reviews\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{instance}}",
@@ -1278,7 +1278,7 @@
                "targets": [
                   {
                      "datasource": "Prometheus",
-                     "expr": "go_memstats_heap_inuse_bytes{app=\"ratings\"}",
+                     "expr": "go_memstats_heap_inuse_bytes{app=\"reviews\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{instance}}",
@@ -1365,7 +1365,7 @@
                "targets": [
                   {
                      "datasource": "Prometheus",
-                     "expr": "go_memstats_heap_objects{app=\"ratings\"}",
+                     "expr": "go_memstats_heap_objects{app=\"reviews\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{instance}}",
@@ -1452,7 +1452,7 @@
                "targets": [
                   {
                      "datasource": "Prometheus",
-                     "expr": "go_memstats_heap_released_bytes{app=\"ratings\"}",
+                     "expr": "go_memstats_heap_released_bytes{app=\"reviews\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{instance}}",
@@ -1539,7 +1539,7 @@
                "targets": [
                   {
                      "datasource": "Prometheus",
-                     "expr": "go_memstats_heap_sys_bytes{app=\"ratings\"}",
+                     "expr": "go_memstats_heap_sys_bytes{app=\"reviews\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{instance}}",
@@ -1626,7 +1626,7 @@
                "targets": [
                   {
                      "datasource": "Prometheus",
-                     "expr": "go_memstats_last_gc_time_seconds{app=\"ratings\"}",
+                     "expr": "go_memstats_last_gc_time_seconds{app=\"reviews\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{instance}}",
@@ -1713,7 +1713,7 @@
                "targets": [
                   {
                      "datasource": "Prometheus",
-                     "expr": "go_memstats_lookups_total{app=\"ratings\"}",
+                     "expr": "go_memstats_lookups_total{app=\"reviews\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{instance}}",
@@ -1800,7 +1800,7 @@
                "targets": [
                   {
                      "datasource": "Prometheus",
-                     "expr": "go_memstats_mallocs_total{app=\"ratings\"}",
+                     "expr": "go_memstats_mallocs_total{app=\"reviews\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{instance}}",
@@ -1887,7 +1887,7 @@
                "targets": [
                   {
                      "datasource": "Prometheus",
-                     "expr": "go_memstats_mcache_inuse_bytes{app=\"ratings\"}",
+                     "expr": "go_memstats_mcache_inuse_bytes{app=\"reviews\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{instance}}",
@@ -1974,7 +1974,7 @@
                "targets": [
                   {
                      "datasource": "Prometheus",
-                     "expr": "go_memstats_mcache_sys_bytes{app=\"ratings\"}",
+                     "expr": "go_memstats_mcache_sys_bytes{app=\"reviews\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{instance}}",
@@ -2061,7 +2061,7 @@
                "targets": [
                   {
                      "datasource": "Prometheus",
-                     "expr": "go_memstats_mspan_inuse_bytes{app=\"ratings\"}",
+                     "expr": "go_memstats_mspan_inuse_bytes{app=\"reviews\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{instance}}",
@@ -2148,7 +2148,7 @@
                "targets": [
                   {
                      "datasource": "Prometheus",
-                     "expr": "go_memstats_mspan_sys_bytes{app=\"ratings\"}",
+                     "expr": "go_memstats_mspan_sys_bytes{app=\"reviews\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{instance}}",
@@ -2235,7 +2235,7 @@
                "targets": [
                   {
                      "datasource": "Prometheus",
-                     "expr": "go_memstats_next_gc_bytes{app=\"ratings\"}",
+                     "expr": "go_memstats_next_gc_bytes{app=\"reviews\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{instance}}",
@@ -2322,7 +2322,7 @@
                "targets": [
                   {
                      "datasource": "Prometheus",
-                     "expr": "go_memstats_other_sys_bytes{app=\"ratings\"}",
+                     "expr": "go_memstats_other_sys_bytes{app=\"reviews\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{instance}}",
@@ -2409,7 +2409,7 @@
                "targets": [
                   {
                      "datasource": "Prometheus",
-                     "expr": "go_memstats_stack_inuse_bytes{app=\"ratings\"}",
+                     "expr": "go_memstats_stack_inuse_bytes{app=\"reviews\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{instance}}",
@@ -2496,7 +2496,7 @@
                "targets": [
                   {
                      "datasource": "Prometheus",
-                     "expr": "go_memstats_stack_sys_bytes{app=\"ratings\"}",
+                     "expr": "go_memstats_stack_sys_bytes{app=\"reviews\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{instance}}",
@@ -2583,7 +2583,7 @@
                "targets": [
                   {
                      "datasource": "Prometheus",
-                     "expr": "go_memstats_sys_bytes{app=\"ratings\"}",
+                     "expr": "go_memstats_sys_bytes{app=\"reviews\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{instance}}",
@@ -2685,7 +2685,7 @@
                "targets": [
                   {
                      "datasource": "Prometheus",
-                     "expr": "sum(rate(grpc_server_handled_total{app=\"ratings\",grpc_type=\"unary\"}[1m])) by (grpc_code)",
+                     "expr": "sum(rate(grpc_server_handled_total{app=\"reviews\",grpc_type=\"unary\"}[1m])) by (grpc_code)",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{grpc_code}}",
@@ -2772,7 +2772,7 @@
                "targets": [
                   {
                      "datasource": "Prometheus",
-                     "expr": "sum(rate(grpc_server_handled_total{app=\"ratings\",grpc_type=\"unary\"}[1m])) by (instance)",
+                     "expr": "sum(rate(grpc_server_handled_total{app=\"reviews\",grpc_type=\"unary\"}[1m])) by (instance)",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{instance}}",
@@ -2859,7 +2859,7 @@
                "targets": [
                   {
                      "datasource": "Prometheus",
-                     "expr": "sum(rate(grpc_server_handled_total{app=\"ratings\",grpc_type=\"unary\"}[1m])) by (grpc_service)",
+                     "expr": "sum(rate(grpc_server_handled_total{app=\"reviews\",grpc_type=\"unary\"}[1m])) by (grpc_service)",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{grpc_service}}",
@@ -2946,7 +2946,7 @@
                "targets": [
                   {
                      "datasource": "Prometheus",
-                     "expr": "sum(rate(grpc_server_handled_total{app=\"ratings\",grpc_type=\"unary\"}[1m])) by (grpc_service,grpc_method)",
+                     "expr": "sum(rate(grpc_server_handled_total{app=\"reviews\",grpc_type=\"unary\"}[1m])) by (grpc_service,grpc_method)",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{grpc_service}}.{{grpc_method}}",
@@ -3048,7 +3048,7 @@
                "targets": [
                   {
                      "datasource": "Prometheus",
-                     "expr": "sum(rate(grpc_server_handled_total{app=\"ratings\",grpc_type=\"unary\",grpc_code!=\"OK\"}[1m])) by (grpc_service)/sum(rate(grpc_server_started_total{app=\"ratings\",grpc_type=\"unary\"}[1m])) by (grpc_service)* 100.0",
+                     "expr": "sum(rate(grpc_server_handled_total{app=\"reviews\",grpc_type=\"unary\",grpc_code!=\"OK\"}[1m])) by (grpc_service)/sum(rate(grpc_server_started_total{app=\"reviews\",grpc_type=\"unary\"}[1m])) by (grpc_service)* 100.0",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{grpc_service}}",
@@ -3135,7 +3135,7 @@
                "targets": [
                   {
                      "datasource": "Prometheus",
-                     "expr": "sum(rate(grpc_server_handled_total{app=\"ratings\",grpc_type=\"unary\",grpc_code!=\"OK\"}[1m])) by (grpc_service,grpc_method)/sum(rate(grpc_server_started_total{app=\"ratings\",grpc_type=\"unary\"}[1m])) by (grpc_service,grpc_method)* 100.0",
+                     "expr": "sum(rate(grpc_server_handled_total{app=\"reviews\",grpc_type=\"unary\",grpc_code!=\"OK\"}[1m])) by (grpc_service,grpc_method)/sum(rate(grpc_server_started_total{app=\"reviews\",grpc_type=\"unary\"}[1m])) by (grpc_service,grpc_method)* 100.0",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{grpc_service}}.{{grpc_method}}",
@@ -3222,7 +3222,7 @@
                "targets": [
                   {
                      "datasource": "Prometheus",
-                     "expr": "sum(rate(grpc_server_handled_total{app=\"ratings\",grpc_type=\"unary\",grpc_code!=\"OK\"}[1m])) by (instance)/sum(rate(grpc_server_started_total{app=\"ratings\",grpc_type=\"unary\"}[1m])) by (instance)* 100.0",
+                     "expr": "sum(rate(grpc_server_handled_total{app=\"reviews\",grpc_type=\"unary\",grpc_code!=\"OK\"}[1m])) by (instance)/sum(rate(grpc_server_started_total{app=\"reviews\",grpc_type=\"unary\"}[1m])) by (instance)* 100.0",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{instance}}",
@@ -3324,7 +3324,7 @@
                "targets": [
                   {
                      "datasource": "Prometheus",
-                     "expr": "1000 * histogram_quantile(0.98999999999999999,sum(rate(grpc_server_handling_seconds_bucket{app=\"ratings\",grpc_type=\"unary\"}[1m])) by (grpc_code,le))",
+                     "expr": "1000 * histogram_quantile(0.98999999999999999,sum(rate(grpc_server_handling_seconds_bucket{app=\"reviews\",grpc_type=\"unary\"}[1m])) by (grpc_code,le))",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{grpc_code}}",
@@ -3411,7 +3411,7 @@
                "targets": [
                   {
                      "datasource": "Prometheus",
-                     "expr": "1000 * histogram_quantile(0.98999999999999999,sum(rate(grpc_server_handling_seconds_bucket{app=\"ratings\",grpc_type=\"unary\"}[1m])) by (instance,le))",
+                     "expr": "1000 * histogram_quantile(0.98999999999999999,sum(rate(grpc_server_handling_seconds_bucket{app=\"reviews\",grpc_type=\"unary\"}[1m])) by (instance,le))",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{instance}}",
@@ -3498,7 +3498,7 @@
                "targets": [
                   {
                      "datasource": "Prometheus",
-                     "expr": "1000 * histogram_quantile(0.98999999999999999,sum(rate(grpc_server_handling_seconds_bucket{app=\"ratings\",grpc_type=\"unary\"}[1m])) by (grpc_service,le))",
+                     "expr": "1000 * histogram_quantile(0.98999999999999999,sum(rate(grpc_server_handling_seconds_bucket{app=\"reviews\",grpc_type=\"unary\"}[1m])) by (grpc_service,le))",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{grpc_service}}",
@@ -3585,7 +3585,7 @@
                "targets": [
                   {
                      "datasource": "Prometheus",
-                     "expr": "1000 * histogram_quantile(0.98999999999999999,sum(rate(grpc_server_handling_seconds_bucket{app=\"ratings\",grpc_type=\"unary\"}[1m])) by (grpc_service,grpc_method,le))",
+                     "expr": "1000 * histogram_quantile(0.98999999999999999,sum(rate(grpc_server_handling_seconds_bucket{app=\"reviews\",grpc_type=\"unary\"}[1m])) by (grpc_service,grpc_method,le))",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{grpc_service}}.{{grpc_method}}",
@@ -3687,7 +3687,7 @@
                "targets": [
                   {
                      "datasource": "Prometheus",
-                     "expr": "1000 * histogram_quantile(0.90000000000000002,sum(rate(grpc_server_handling_seconds_bucket{app=\"ratings\",grpc_type=\"unary\"}[1m])) by (grpc_code,le))",
+                     "expr": "1000 * histogram_quantile(0.90000000000000002,sum(rate(grpc_server_handling_seconds_bucket{app=\"reviews\",grpc_type=\"unary\"}[1m])) by (grpc_code,le))",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{grpc_code}}",
@@ -3774,7 +3774,7 @@
                "targets": [
                   {
                      "datasource": "Prometheus",
-                     "expr": "1000 * histogram_quantile(0.90000000000000002,sum(rate(grpc_server_handling_seconds_bucket{app=\"ratings\",grpc_type=\"unary\"}[1m])) by (instance,le))",
+                     "expr": "1000 * histogram_quantile(0.90000000000000002,sum(rate(grpc_server_handling_seconds_bucket{app=\"reviews\",grpc_type=\"unary\"}[1m])) by (instance,le))",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{instance}}",
@@ -3861,7 +3861,7 @@
                "targets": [
                   {
                      "datasource": "Prometheus",
-                     "expr": "1000 * histogram_quantile(0.90000000000000002,sum(rate(grpc_server_handling_seconds_bucket{app=\"ratings\",grpc_type=\"unary\"}[1m])) by (grpc_service,le))",
+                     "expr": "1000 * histogram_quantile(0.90000000000000002,sum(rate(grpc_server_handling_seconds_bucket{app=\"reviews\",grpc_type=\"unary\"}[1m])) by (grpc_service,le))",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{grpc_service}}",
@@ -3948,7 +3948,7 @@
                "targets": [
                   {
                      "datasource": "Prometheus",
-                     "expr": "1000 * histogram_quantile(0.98999999999999999,sum(rate(grpc_server_handling_seconds_bucket{app=\"ratings\",grpc_type=\"unary\"}[1m])) by (grpc_service,grpc_method,le))",
+                     "expr": "1000 * histogram_quantile(0.98999999999999999,sum(rate(grpc_server_handling_seconds_bucket{app=\"reviews\",grpc_type=\"unary\"}[1m])) by (grpc_service,grpc_method,le))",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{grpc_service}}.{{grpc_method}}",
@@ -4050,7 +4050,7 @@
                "targets": [
                   {
                      "datasource": "Prometheus",
-                     "expr": "sum(rate(grpc_client_handled_total{app=\"ratings\",grpc_type=\"unary\"}[1m])) by (grpc_code)",
+                     "expr": "sum(rate(grpc_client_handled_total{app=\"reviews\",grpc_type=\"unary\"}[1m])) by (grpc_code)",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{grpc_code}}",
@@ -4137,7 +4137,7 @@
                "targets": [
                   {
                      "datasource": "Prometheus",
-                     "expr": "sum(rate(grpc_client_handled_total{app=\"ratings\",grpc_type=\"unary\"}[1m])) by (instance)",
+                     "expr": "sum(rate(grpc_client_handled_total{app=\"reviews\",grpc_type=\"unary\"}[1m])) by (instance)",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{instance}}",
@@ -4224,7 +4224,7 @@
                "targets": [
                   {
                      "datasource": "Prometheus",
-                     "expr": "sum(rate(grpc_client_handled_total{app=\"ratings\",grpc_type=\"unary\"}[1m])) by (grpc_service)",
+                     "expr": "sum(rate(grpc_client_handled_total{app=\"reviews\",grpc_type=\"unary\"}[1m])) by (grpc_service)",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{grpc_service}}",
@@ -4311,7 +4311,7 @@
                "targets": [
                   {
                      "datasource": "Prometheus",
-                     "expr": "sum(rate(grpc_client_handled_total{app=\"ratings\",grpc_type=\"unary\"}[1m])) by (grpc_service,grpc_method)",
+                     "expr": "sum(rate(grpc_client_handled_total{app=\"reviews\",grpc_type=\"unary\"}[1m])) by (grpc_service,grpc_method)",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{grpc_service}}.{{grpc_method}}",
@@ -4413,7 +4413,7 @@
                "targets": [
                   {
                      "datasource": "Prometheus",
-                     "expr": "sum(rate(grpc_client_handled_total{app=\"ratings\",grpc_type=\"unary\",grpc_code!=\"OK\"}[1m])) by (grpc_service)/sum(rate(grpc_client_started_total{app=\"ratings\",grpc_type=\"unary\"}[1m])) by (grpc_service)* 100.0",
+                     "expr": "sum(rate(grpc_client_handled_total{app=\"reviews\",grpc_type=\"unary\",grpc_code!=\"OK\"}[1m])) by (grpc_service)/sum(rate(grpc_client_started_total{app=\"reviews\",grpc_type=\"unary\"}[1m])) by (grpc_service)* 100.0",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{grpc_service}}",
@@ -4500,7 +4500,7 @@
                "targets": [
                   {
                      "datasource": "Prometheus",
-                     "expr": "sum(rate(grpc_client_handled_total{app=\"ratings\",grpc_type=\"unary\",grpc_code!=\"OK\"}[1m])) by (grpc_service,grpc_method)/sum(rate(grpc_client_started_total{app=\"ratings\",grpc_type=\"unary\"}[1m])) by (grpc_service,grpc_method)* 100.0",
+                     "expr": "sum(rate(grpc_client_handled_total{app=\"reviews\",grpc_type=\"unary\",grpc_code!=\"OK\"}[1m])) by (grpc_service,grpc_method)/sum(rate(grpc_client_started_total{app=\"reviews\",grpc_type=\"unary\"}[1m])) by (grpc_service,grpc_method)* 100.0",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{grpc_service}}.{{grpc_method}}",
@@ -4587,7 +4587,7 @@
                "targets": [
                   {
                      "datasource": "Prometheus",
-                     "expr": "sum(rate(grpc_client_handled_total{app=\"ratings\",grpc_type=\"unary\",grpc_code!=\"OK\"}[1m])) by (instance)/sum(rate(grpc_client_started_total{app=\"ratings\",grpc_type=\"unary\"}[1m])) by (instance)* 100.0",
+                     "expr": "sum(rate(grpc_client_handled_total{app=\"reviews\",grpc_type=\"unary\",grpc_code!=\"OK\"}[1m])) by (instance)/sum(rate(grpc_client_started_total{app=\"reviews\",grpc_type=\"unary\"}[1m])) by (instance)* 100.0",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{instance}}",
@@ -4689,7 +4689,7 @@
                "targets": [
                   {
                      "datasource": "Prometheus",
-                     "expr": "1000 * histogram_quantile(0.98999999999999999,sum(rate(grpc_client_handling_seconds_bucket{app=\"ratings\",grpc_type=\"unary\"}[1m])) by (grpc_code,le))",
+                     "expr": "1000 * histogram_quantile(0.98999999999999999,sum(rate(grpc_client_handling_seconds_bucket{app=\"reviews\",grpc_type=\"unary\"}[1m])) by (grpc_code,le))",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{grpc_code}}",
@@ -4776,7 +4776,7 @@
                "targets": [
                   {
                      "datasource": "Prometheus",
-                     "expr": "1000 * histogram_quantile(0.98999999999999999,sum(rate(grpc_client_handling_seconds_bucket{app=\"ratings\",grpc_type=\"unary\"}[1m])) by (instance,le))",
+                     "expr": "1000 * histogram_quantile(0.98999999999999999,sum(rate(grpc_client_handling_seconds_bucket{app=\"reviews\",grpc_type=\"unary\"}[1m])) by (instance,le))",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{instance}}",
@@ -4863,7 +4863,7 @@
                "targets": [
                   {
                      "datasource": "Prometheus",
-                     "expr": "1000 * histogram_quantile(0.98999999999999999,sum(rate(grpc_client_handling_seconds_bucket{app=\"ratings\",grpc_type=\"unary\"}[1m])) by (grpc_service,le))",
+                     "expr": "1000 * histogram_quantile(0.98999999999999999,sum(rate(grpc_client_handling_seconds_bucket{app=\"reviews\",grpc_type=\"unary\"}[1m])) by (grpc_service,le))",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{grpc_service}}",
@@ -4950,7 +4950,7 @@
                "targets": [
                   {
                      "datasource": "Prometheus",
-                     "expr": "1000 * histogram_quantile(0.98999999999999999,sum(rate(grpc_client_handling_seconds_bucket{app=\"ratings\",grpc_type=\"unary\"}[1m])) by (grpc_service,grpc_method,le))",
+                     "expr": "1000 * histogram_quantile(0.98999999999999999,sum(rate(grpc_client_handling_seconds_bucket{app=\"reviews\",grpc_type=\"unary\"}[1m])) by (grpc_service,grpc_method,le))",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{grpc_service}}.{{grpc_method}}",
@@ -5052,7 +5052,7 @@
                "targets": [
                   {
                      "datasource": "Prometheus",
-                     "expr": "1000 * histogram_quantile(0.90000000000000002,sum(rate(grpc_client_handling_seconds_bucket{app=\"ratings\",grpc_type=\"unary\"}[1m])) by (grpc_code,le))",
+                     "expr": "1000 * histogram_quantile(0.90000000000000002,sum(rate(grpc_client_handling_seconds_bucket{app=\"reviews\",grpc_type=\"unary\"}[1m])) by (grpc_code,le))",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{grpc_code}}",
@@ -5139,7 +5139,7 @@
                "targets": [
                   {
                      "datasource": "Prometheus",
-                     "expr": "1000 * histogram_quantile(0.90000000000000002,sum(rate(grpc_client_handling_seconds_bucket{app=\"ratings\",grpc_type=\"unary\"}[1m])) by (instance,le))",
+                     "expr": "1000 * histogram_quantile(0.90000000000000002,sum(rate(grpc_client_handling_seconds_bucket{app=\"reviews\",grpc_type=\"unary\"}[1m])) by (instance,le))",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{instance}}",
@@ -5226,7 +5226,7 @@
                "targets": [
                   {
                      "datasource": "Prometheus",
-                     "expr": "1000 * histogram_quantile(0.90000000000000002,sum(rate(grpc_client_handling_seconds_bucket{app=\"ratings\",grpc_type=\"unary\"}[1m])) by (grpc_service,le))",
+                     "expr": "1000 * histogram_quantile(0.90000000000000002,sum(rate(grpc_client_handling_seconds_bucket{app=\"reviews\",grpc_type=\"unary\"}[1m])) by (grpc_service,le))",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{grpc_service}}",
@@ -5313,7 +5313,7 @@
                "targets": [
                   {
                      "datasource": "Prometheus",
-                     "expr": "1000 * histogram_quantile(0.98999999999999999,sum(rate(grpc_client_handling_seconds_bucket{app=\"ratings\",grpc_type=\"unary\"}[1m])) by (grpc_service,grpc_method,le))",
+                     "expr": "1000 * histogram_quantile(0.98999999999999999,sum(rate(grpc_client_handling_seconds_bucket{app=\"reviews\",grpc_type=\"unary\"}[1m])) by (grpc_service,grpc_method,le))",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{grpc_service}}.{{grpc_method}}",
@@ -5415,7 +5415,7 @@
                "targets": [
                   {
                      "datasource": "Prometheus",
-                     "expr": "sum(rate(http_server_requests_seconds_count{app=\"ratings\"}[1m])) by (grpc_code)",
+                     "expr": "sum(rate(http_server_requests_seconds_count{app=\"reviews\"}[1m])) by (grpc_code)",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{grpc_code}}",
@@ -5502,7 +5502,7 @@
                "targets": [
                   {
                      "datasource": "Prometheus",
-                     "expr": "sum(rate(http_server_requests_seconds_count{app=\"ratings\"}[1m])) by (grpc_code)",
+                     "expr": "sum(rate(http_server_requests_seconds_count{app=\"reviews\"}[1m])) by (grpc_code)",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{grpc_code}}",
@@ -5589,7 +5589,7 @@
                "targets": [
                   {
                      "datasource": "Prometheus",
-                     "expr": "sum(rate(http_server_requests_seconds_count{app=\"ratings\"}[1m])) by (grpc_code)",
+                     "expr": "sum(rate(http_server_requests_seconds_count{app=\"reviews\"}[1m])) by (grpc_code)",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{grpc_code}}",
@@ -5676,7 +5676,7 @@
                "targets": [
                   {
                      "datasource": "Prometheus",
-                     "expr": "sum(rate(http_server_requests_seconds_count{app=\"ratings\"}[1m])) by (grpc_code)",
+                     "expr": "sum(rate(http_server_requests_seconds_count{app=\"reviews\"}[1m])) by (grpc_code)",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{grpc_code}}",
@@ -5778,7 +5778,7 @@
                "targets": [
                   {
                      "datasource": "Prometheus",
-                     "expr": "sum(rate(http_server_requests_seconds_count{app=\"ratings\",status!=\"200\"}[1m])) by (instance)/sum(rate(http_server_requests_seconds_count{app=\"ratings\"}[1m])) by (instance)* 100.0",
+                     "expr": "sum(rate(http_server_requests_seconds_count{app=\"reviews\",status!=\"200\"}[1m])) by (instance)/sum(rate(http_server_requests_seconds_count{app=\"reviews\"}[1m])) by (instance)* 100.0",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{instance}}",
@@ -5865,7 +5865,7 @@
                "targets": [
                   {
                      "datasource": "Prometheus",
-                     "expr": "sum(rate(http_server_requests_seconds_count{app=\"ratings\",status!=\"200\"}[1m])) by (method,uri)/sum(rate(http_server_requests_seconds_count{app=\"ratings\"}[1m])) by (method,uri)* 100.0",
+                     "expr": "sum(rate(http_server_requests_seconds_count{app=\"reviews\",status!=\"200\"}[1m])) by (method,uri)/sum(rate(http_server_requests_seconds_count{app=\"reviews\"}[1m])) by (method,uri)* 100.0",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{method}}.{{uri}}",
@@ -5930,7 +5930,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": null,
-               "description": "Latency of http request group by (grpc_code)",
+               "description": "Latency of http request group by (status)",
                "fill": 0,
                "gridPos": {
                   "h": 10,
@@ -5967,17 +5967,17 @@
                "targets": [
                   {
                      "datasource": "Prometheus",
-                     "expr": "1000 * histogram_quantile(0.98999999999999999,sum(rate(http_server_requests_seconds_bucket{app=\"ratings\"}[1m])) by (grpc_code,le))",
+                     "expr": "1000 * histogram_quantile(0.98999999999999999,sum(rate(http_server_requests_seconds_bucket{app=\"reviews\"}[1m])) by (status,le))",
                      "format": "time_series",
                      "intervalFactor": 2,
-                     "legendFormat": "{{grpc_code}}",
+                     "legendFormat": "{{status}}",
                      "refId": "A"
                   }
                ],
                "thresholds": [ ],
                "timeFrom": null,
                "timeShift": null,
-               "title": "Latency of http request group by (grpc_code)",
+               "title": "Latency of http request group by (status)",
                "tooltip": {
                   "shared": true,
                   "sort": 0,
@@ -6054,7 +6054,7 @@
                "targets": [
                   {
                      "datasource": "Prometheus",
-                     "expr": "1000 * histogram_quantile(0.98999999999999999,sum(rate(http_server_requests_seconds_bucket{app=\"ratings\"}[1m])) by (instance,le))",
+                     "expr": "1000 * histogram_quantile(0.98999999999999999,sum(rate(http_server_requests_seconds_bucket{app=\"reviews\"}[1m])) by (instance,le))",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{instance}}",
@@ -6104,7 +6104,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": null,
-               "description": "Latency of http request group by (grpc_service)",
+               "description": "Latency of http request group by (method,uri)",
                "fill": 0,
                "gridPos": {
                   "h": 10,
@@ -6141,104 +6141,17 @@
                "targets": [
                   {
                      "datasource": "Prometheus",
-                     "expr": "1000 * histogram_quantile(0.98999999999999999,sum(rate(http_server_requests_seconds_bucket{app=\"ratings\"}[1m])) by (grpc_service,le))",
+                     "expr": "1000 * histogram_quantile(0.98999999999999999,sum(rate(http_server_requests_seconds_bucket{app=\"reviews\"}[1m])) by (method,uri,le))",
                      "format": "time_series",
                      "intervalFactor": 2,
-                     "legendFormat": "{{grpc_service}}",
+                     "legendFormat": "{{method}}.{{uri}}",
                      "refId": "A"
                   }
                ],
                "thresholds": [ ],
                "timeFrom": null,
                "timeShift": null,
-               "title": "Latency of http request group by (grpc_service)",
-               "tooltip": {
-                  "shared": true,
-                  "sort": 0,
-                  "value_type": "individual"
-               },
-               "transparent": true,
-               "type": "graph",
-               "xaxis": {
-                  "buckets": null,
-                  "mode": "time",
-                  "name": null,
-                  "show": true,
-                  "values": [ ]
-               },
-               "yaxes": [
-                  {
-                     "format": "ms",
-                     "label": null,
-                     "logBase": 1,
-                     "max": null,
-                     "min": 0,
-                     "show": true
-                  },
-                  {
-                     "format": "ms",
-                     "label": null,
-                     "logBase": 1,
-                     "max": null,
-                     "min": 0,
-                     "show": true
-                  }
-               ]
-            },
-            {
-               "aliasColors": { },
-               "bars": false,
-               "dashLength": 10,
-               "dashes": false,
-               "datasource": null,
-               "description": "Latency of http request group by (grpc_service,grpc_method)",
-               "fill": 0,
-               "gridPos": {
-                  "h": 10,
-                  "w": 12,
-                  "x": 12,
-                  "y": 0
-               },
-               "id": 84,
-               "legend": {
-                  "alignAsTable": true,
-                  "avg": false,
-                  "current": true,
-                  "max": true,
-                  "min": false,
-                  "rightSide": true,
-                  "show": true,
-                  "total": false,
-                  "values": true
-               },
-               "lines": true,
-               "linewidth": 1,
-               "links": [ ],
-               "nullPointMode": "null",
-               "percentage": false,
-               "pointradius": 5,
-               "points": false,
-               "renderer": "flot",
-               "repeat": null,
-               "seriesOverrides": [ ],
-               "spaceLength": 10,
-               "span": 6,
-               "stack": false,
-               "steppedLine": false,
-               "targets": [
-                  {
-                     "datasource": "Prometheus",
-                     "expr": "1000 * histogram_quantile(0.98999999999999999,sum(rate(http_server_requests_seconds_bucket{app=\"ratings\"}[1m])) by (grpc_service,grpc_method,le))",
-                     "format": "time_series",
-                     "intervalFactor": 2,
-                     "legendFormat": "{{grpc_service}}.{{grpc_method}}",
-                     "refId": "A"
-                  }
-               ],
-               "thresholds": [ ],
-               "timeFrom": null,
-               "timeShift": null,
-               "title": "Latency of http request group by (grpc_service,grpc_method)",
+               "title": "Latency of http request group by (method,uri)",
                "tooltip": {
                   "shared": true,
                   "sort": 0,
@@ -6285,7 +6198,7 @@
          "collapse": true,
          "collapsed": true,
          "gridPos": { },
-         "id": 85,
+         "id": 84,
          "panels": [
             {
                "aliasColors": { },
@@ -6293,7 +6206,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": null,
-               "description": "Latency of http request group by (grpc_code)",
+               "description": "Latency of http request group by (status)",
                "fill": 0,
                "gridPos": {
                   "h": 10,
@@ -6301,7 +6214,7 @@
                   "x": 0,
                   "y": 0
                },
-               "id": 86,
+               "id": 85,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -6330,17 +6243,17 @@
                "targets": [
                   {
                      "datasource": "Prometheus",
-                     "expr": "1000 * histogram_quantile(0.90000000000000002,sum(rate(http_server_requests_seconds_bucket{app=\"ratings\"}[1m])) by (grpc_code,le))",
+                     "expr": "1000 * histogram_quantile(0.90000000000000002,sum(rate(http_server_requests_seconds_bucket{app=\"reviews\"}[1m])) by (status,le))",
                      "format": "time_series",
                      "intervalFactor": 2,
-                     "legendFormat": "{{grpc_code}}",
+                     "legendFormat": "{{status}}",
                      "refId": "A"
                   }
                ],
                "thresholds": [ ],
                "timeFrom": null,
                "timeShift": null,
-               "title": "Latency of http request group by (grpc_code)",
+               "title": "Latency of http request group by (status)",
                "tooltip": {
                   "shared": true,
                   "sort": 0,
@@ -6388,7 +6301,7 @@
                   "x": 12,
                   "y": 0
                },
-               "id": 87,
+               "id": 86,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -6417,7 +6330,7 @@
                "targets": [
                   {
                      "datasource": "Prometheus",
-                     "expr": "1000 * histogram_quantile(0.90000000000000002,sum(rate(http_server_requests_seconds_bucket{app=\"ratings\"}[1m])) by (instance,le))",
+                     "expr": "1000 * histogram_quantile(0.90000000000000002,sum(rate(http_server_requests_seconds_bucket{app=\"reviews\"}[1m])) by (instance,le))",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{instance}}",
@@ -6467,7 +6380,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": null,
-               "description": "Latency of http request group by (grpc_service)",
+               "description": "Latency of http request group by (method,uri)",
                "fill": 0,
                "gridPos": {
                   "h": 10,
@@ -6475,7 +6388,7 @@
                   "x": 0,
                   "y": 0
                },
-               "id": 88,
+               "id": 87,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -6504,104 +6417,17 @@
                "targets": [
                   {
                      "datasource": "Prometheus",
-                     "expr": "1000 * histogram_quantile(0.90000000000000002,sum(rate(http_server_requests_seconds_bucket{app=\"ratings\"}[1m])) by (grpc_service,le))",
+                     "expr": "1000 * histogram_quantile(0.90000000000000002,sum(rate(http_server_requests_seconds_bucket{app=\"reviews\"}[1m])) by (method,uri,le))",
                      "format": "time_series",
                      "intervalFactor": 2,
-                     "legendFormat": "{{grpc_service}}",
+                     "legendFormat": "{{method}}.{{uri}}",
                      "refId": "A"
                   }
                ],
                "thresholds": [ ],
                "timeFrom": null,
                "timeShift": null,
-               "title": "Latency of http request group by (grpc_service)",
-               "tooltip": {
-                  "shared": true,
-                  "sort": 0,
-                  "value_type": "individual"
-               },
-               "transparent": true,
-               "type": "graph",
-               "xaxis": {
-                  "buckets": null,
-                  "mode": "time",
-                  "name": null,
-                  "show": true,
-                  "values": [ ]
-               },
-               "yaxes": [
-                  {
-                     "format": "ms",
-                     "label": null,
-                     "logBase": 1,
-                     "max": null,
-                     "min": 0,
-                     "show": true
-                  },
-                  {
-                     "format": "ms",
-                     "label": null,
-                     "logBase": 1,
-                     "max": null,
-                     "min": 0,
-                     "show": true
-                  }
-               ]
-            },
-            {
-               "aliasColors": { },
-               "bars": false,
-               "dashLength": 10,
-               "dashes": false,
-               "datasource": null,
-               "description": "Latency of http request group by (grpc_service,grpc_method)",
-               "fill": 0,
-               "gridPos": {
-                  "h": 10,
-                  "w": 12,
-                  "x": 12,
-                  "y": 0
-               },
-               "id": 89,
-               "legend": {
-                  "alignAsTable": true,
-                  "avg": false,
-                  "current": true,
-                  "max": true,
-                  "min": false,
-                  "rightSide": true,
-                  "show": true,
-                  "total": false,
-                  "values": true
-               },
-               "lines": true,
-               "linewidth": 1,
-               "links": [ ],
-               "nullPointMode": "null",
-               "percentage": false,
-               "pointradius": 5,
-               "points": false,
-               "renderer": "flot",
-               "repeat": null,
-               "seriesOverrides": [ ],
-               "spaceLength": 10,
-               "span": 6,
-               "stack": false,
-               "steppedLine": false,
-               "targets": [
-                  {
-                     "datasource": "Prometheus",
-                     "expr": "1000 * histogram_quantile(0.90000000000000002,sum(rate(http_server_requests_seconds_bucket{app=\"ratings\"}[1m])) by (grpc_service,grpc_method,le))",
-                     "format": "time_series",
-                     "intervalFactor": 2,
-                     "legendFormat": "{{grpc_service}}.{{grpc_method}}",
-                     "refId": "A"
-                  }
-               ],
-               "thresholds": [ ],
-               "timeFrom": null,
-               "timeShift": null,
-               "title": "Latency of http request group by (grpc_service,grpc_method)",
+               "title": "Latency of http request group by (method,uri)",
                "tooltip": {
                   "shared": true,
                   "sort": 0,
@@ -6685,7 +6511,7 @@
       ]
    },
    "timezone": "browser",
-   "title": "ratings",
-   "uid": "ratings",
+   "title": "reviews",
+   "uid": "reviews",
    "version": 0
 }

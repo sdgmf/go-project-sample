@@ -1,0 +1,24 @@
+global:
+  resolve_timeout: 10s
+  smtp_from: xxx@xxx
+  smtp_smarthost: ip:port
+  smtp_auth_username: xxx@xxx
+  smtp_auth_password: xxx
+  smtp_auth_identity: xxx@xxx
+route:
+  group_by: ['email']
+  group_wait: 10s
+  group_interval: 10s
+  repeat_interval: 1h
+  receiver: 'email'
+receivers:
+  - name: 'email'
+    email_configs:
+      - to: "{{.GroupLabels.email}}"
+        send_resolved: true
+#inhibit_rules:
+#  - source_match:
+#      severity: 'critical'
+#    target_match:
+#      severity: 'warning'
+#    equal: ['alertname']

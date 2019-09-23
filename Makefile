@@ -40,17 +40,23 @@ proto:
 dash: # create grafana dashboard
 	 for app in $(apps) ;\
 	 do \
-	 	jsonnet -J ./grafana/grafonnet-lib   -o ./scripts/grafana/dashboards/$$app.json  --ext-str app=$$app ./scripts/grafana/dashboard.jsonnet ;\
+	 	jsonnet -J ./grafana/grafonnet-lib   -o ./configs/grafana/dashboards/$$app.json  --ext-str app=$$app ./scripts/grafana/dashboard.jsonnet ;\
 	 done
 .PHONY: pubdash
 pubdash:
 	 for app in $(apps) ;\
 	 do \
-	 	jsonnet -J ./grafana/grafonnet-lib  -o ./scripts/grafana/dashboards-api/$$app-api.json  --ext-str app=$$app  ./scripts/grafana/dashboard-api.jsonnet ; \
+	 	jsonnet -J ./grafana/grafonnet-lib  -o ./configs/grafana/dashboards-api/$$app-api.json  --ext-str app=$$app  ./scripts/grafana/dashboard-api.jsonnet ; \
 	 	curl -X DELETE --user admin:admin  -H "Content-Type: application/json" 'http://localhost:3000/api/dashboards/db/$$app'; \
-	 	curl -x POST --user admin:admin  -H "Content-Type: application/json" --data-binary "@./scripts/grafana/dashboards-api/$$app-api.json" http://localhost:3000/api/dashboards/db ; \
+	 	curl -x POST --user admin:admin  -H "Content-Type: application/json" --data-binary "@./configs/grafana/dashboards-api/$$app-api.json" http://localhost:3000/api/dashboards/db ; \
 	 done
+.PHONY: rules
+rules:
+	for app in $(apps) ;\
+	do \
+	 	jsonnet  -o ./configs/prometheus/rules/$$app.yml --ext-str app=$$app  ./scripts/prometheus/rules.jsonnet ; \
+	done
 .PHONY: docker
-docker-compose: build dash
+docker-compose: build dash rules
 	docker-compose -f deployments/docker-compose.yml up --build -d
 all: lint cover docker

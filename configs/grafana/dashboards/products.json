@@ -5930,7 +5930,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": null,
-               "description": "Latency of http request group by (grpc_code)",
+               "description": "Latency of http request group by (status)",
                "fill": 0,
                "gridPos": {
                   "h": 10,
@@ -5967,17 +5967,17 @@
                "targets": [
                   {
                      "datasource": "Prometheus",
-                     "expr": "1000 * histogram_quantile(0.98999999999999999,sum(rate(http_server_requests_seconds_bucket{app=\"products\"}[1m])) by (grpc_code,le))",
+                     "expr": "1000 * histogram_quantile(0.98999999999999999,sum(rate(http_server_requests_seconds_bucket{app=\"products\"}[1m])) by (status,le))",
                      "format": "time_series",
                      "intervalFactor": 2,
-                     "legendFormat": "{{grpc_code}}",
+                     "legendFormat": "{{status}}",
                      "refId": "A"
                   }
                ],
                "thresholds": [ ],
                "timeFrom": null,
                "timeShift": null,
-               "title": "Latency of http request group by (grpc_code)",
+               "title": "Latency of http request group by (status)",
                "tooltip": {
                   "shared": true,
                   "sort": 0,
@@ -6104,7 +6104,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": null,
-               "description": "Latency of http request group by (grpc_service)",
+               "description": "Latency of http request group by (method,uri)",
                "fill": 0,
                "gridPos": {
                   "h": 10,
@@ -6141,104 +6141,17 @@
                "targets": [
                   {
                      "datasource": "Prometheus",
-                     "expr": "1000 * histogram_quantile(0.98999999999999999,sum(rate(http_server_requests_seconds_bucket{app=\"products\"}[1m])) by (grpc_service,le))",
+                     "expr": "1000 * histogram_quantile(0.98999999999999999,sum(rate(http_server_requests_seconds_bucket{app=\"products\"}[1m])) by (method,uri,le))",
                      "format": "time_series",
                      "intervalFactor": 2,
-                     "legendFormat": "{{grpc_service}}",
+                     "legendFormat": "{{method}}.{{uri}}",
                      "refId": "A"
                   }
                ],
                "thresholds": [ ],
                "timeFrom": null,
                "timeShift": null,
-               "title": "Latency of http request group by (grpc_service)",
-               "tooltip": {
-                  "shared": true,
-                  "sort": 0,
-                  "value_type": "individual"
-               },
-               "transparent": true,
-               "type": "graph",
-               "xaxis": {
-                  "buckets": null,
-                  "mode": "time",
-                  "name": null,
-                  "show": true,
-                  "values": [ ]
-               },
-               "yaxes": [
-                  {
-                     "format": "ms",
-                     "label": null,
-                     "logBase": 1,
-                     "max": null,
-                     "min": 0,
-                     "show": true
-                  },
-                  {
-                     "format": "ms",
-                     "label": null,
-                     "logBase": 1,
-                     "max": null,
-                     "min": 0,
-                     "show": true
-                  }
-               ]
-            },
-            {
-               "aliasColors": { },
-               "bars": false,
-               "dashLength": 10,
-               "dashes": false,
-               "datasource": null,
-               "description": "Latency of http request group by (grpc_service,grpc_method)",
-               "fill": 0,
-               "gridPos": {
-                  "h": 10,
-                  "w": 12,
-                  "x": 12,
-                  "y": 0
-               },
-               "id": 84,
-               "legend": {
-                  "alignAsTable": true,
-                  "avg": false,
-                  "current": true,
-                  "max": true,
-                  "min": false,
-                  "rightSide": true,
-                  "show": true,
-                  "total": false,
-                  "values": true
-               },
-               "lines": true,
-               "linewidth": 1,
-               "links": [ ],
-               "nullPointMode": "null",
-               "percentage": false,
-               "pointradius": 5,
-               "points": false,
-               "renderer": "flot",
-               "repeat": null,
-               "seriesOverrides": [ ],
-               "spaceLength": 10,
-               "span": 6,
-               "stack": false,
-               "steppedLine": false,
-               "targets": [
-                  {
-                     "datasource": "Prometheus",
-                     "expr": "1000 * histogram_quantile(0.98999999999999999,sum(rate(http_server_requests_seconds_bucket{app=\"products\"}[1m])) by (grpc_service,grpc_method,le))",
-                     "format": "time_series",
-                     "intervalFactor": 2,
-                     "legendFormat": "{{grpc_service}}.{{grpc_method}}",
-                     "refId": "A"
-                  }
-               ],
-               "thresholds": [ ],
-               "timeFrom": null,
-               "timeShift": null,
-               "title": "Latency of http request group by (grpc_service,grpc_method)",
+               "title": "Latency of http request group by (method,uri)",
                "tooltip": {
                   "shared": true,
                   "sort": 0,
@@ -6285,7 +6198,7 @@
          "collapse": true,
          "collapsed": true,
          "gridPos": { },
-         "id": 85,
+         "id": 84,
          "panels": [
             {
                "aliasColors": { },
@@ -6293,7 +6206,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": null,
-               "description": "Latency of http request group by (grpc_code)",
+               "description": "Latency of http request group by (status)",
                "fill": 0,
                "gridPos": {
                   "h": 10,
@@ -6301,7 +6214,7 @@
                   "x": 0,
                   "y": 0
                },
-               "id": 86,
+               "id": 85,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -6330,17 +6243,17 @@
                "targets": [
                   {
                      "datasource": "Prometheus",
-                     "expr": "1000 * histogram_quantile(0.90000000000000002,sum(rate(http_server_requests_seconds_bucket{app=\"products\"}[1m])) by (grpc_code,le))",
+                     "expr": "1000 * histogram_quantile(0.90000000000000002,sum(rate(http_server_requests_seconds_bucket{app=\"products\"}[1m])) by (status,le))",
                      "format": "time_series",
                      "intervalFactor": 2,
-                     "legendFormat": "{{grpc_code}}",
+                     "legendFormat": "{{status}}",
                      "refId": "A"
                   }
                ],
                "thresholds": [ ],
                "timeFrom": null,
                "timeShift": null,
-               "title": "Latency of http request group by (grpc_code)",
+               "title": "Latency of http request group by (status)",
                "tooltip": {
                   "shared": true,
                   "sort": 0,
@@ -6388,7 +6301,7 @@
                   "x": 12,
                   "y": 0
                },
-               "id": 87,
+               "id": 86,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -6467,7 +6380,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": null,
-               "description": "Latency of http request group by (grpc_service)",
+               "description": "Latency of http request group by (method,uri)",
                "fill": 0,
                "gridPos": {
                   "h": 10,
@@ -6475,7 +6388,7 @@
                   "x": 0,
                   "y": 0
                },
-               "id": 88,
+               "id": 87,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -6504,104 +6417,17 @@
                "targets": [
                   {
                      "datasource": "Prometheus",
-                     "expr": "1000 * histogram_quantile(0.90000000000000002,sum(rate(http_server_requests_seconds_bucket{app=\"products\"}[1m])) by (grpc_service,le))",
+                     "expr": "1000 * histogram_quantile(0.90000000000000002,sum(rate(http_server_requests_seconds_bucket{app=\"products\"}[1m])) by (method,uri,le))",
                      "format": "time_series",
                      "intervalFactor": 2,
-                     "legendFormat": "{{grpc_service}}",
+                     "legendFormat": "{{method}}.{{uri}}",
                      "refId": "A"
                   }
                ],
                "thresholds": [ ],
                "timeFrom": null,
                "timeShift": null,
-               "title": "Latency of http request group by (grpc_service)",
-               "tooltip": {
-                  "shared": true,
-                  "sort": 0,
-                  "value_type": "individual"
-               },
-               "transparent": true,
-               "type": "graph",
-               "xaxis": {
-                  "buckets": null,
-                  "mode": "time",
-                  "name": null,
-                  "show": true,
-                  "values": [ ]
-               },
-               "yaxes": [
-                  {
-                     "format": "ms",
-                     "label": null,
-                     "logBase": 1,
-                     "max": null,
-                     "min": 0,
-                     "show": true
-                  },
-                  {
-                     "format": "ms",
-                     "label": null,
-                     "logBase": 1,
-                     "max": null,
-                     "min": 0,
-                     "show": true
-                  }
-               ]
-            },
-            {
-               "aliasColors": { },
-               "bars": false,
-               "dashLength": 10,
-               "dashes": false,
-               "datasource": null,
-               "description": "Latency of http request group by (grpc_service,grpc_method)",
-               "fill": 0,
-               "gridPos": {
-                  "h": 10,
-                  "w": 12,
-                  "x": 12,
-                  "y": 0
-               },
-               "id": 89,
-               "legend": {
-                  "alignAsTable": true,
-                  "avg": false,
-                  "current": true,
-                  "max": true,
-                  "min": false,
-                  "rightSide": true,
-                  "show": true,
-                  "total": false,
-                  "values": true
-               },
-               "lines": true,
-               "linewidth": 1,
-               "links": [ ],
-               "nullPointMode": "null",
-               "percentage": false,
-               "pointradius": 5,
-               "points": false,
-               "renderer": "flot",
-               "repeat": null,
-               "seriesOverrides": [ ],
-               "spaceLength": 10,
-               "span": 6,
-               "stack": false,
-               "steppedLine": false,
-               "targets": [
-                  {
-                     "datasource": "Prometheus",
-                     "expr": "1000 * histogram_quantile(0.90000000000000002,sum(rate(http_server_requests_seconds_bucket{app=\"products\"}[1m])) by (grpc_service,grpc_method,le))",
-                     "format": "time_series",
-                     "intervalFactor": 2,
-                     "legendFormat": "{{grpc_service}}.{{grpc_method}}",
-                     "refId": "A"
-                  }
-               ],
-               "thresholds": [ ],
-               "timeFrom": null,
-               "timeShift": null,
-               "title": "Latency of http request group by (grpc_service,grpc_method)",
+               "title": "Latency of http request group by (method,uri)",
                "tooltip": {
                   "shared": true,
                   "sort": 0,

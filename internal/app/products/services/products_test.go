@@ -12,7 +12,7 @@ import (
 	"testing"
 )
 
-var configFile = flag.String("f", "products.yml", "set config file which viper will loading.")
+var configFile = flag.String("f", "products.bak", "set config file which viper will loading.")
 
 func TestDefaultProductsService_Get(t *testing.T) {
 	flag.Parse()

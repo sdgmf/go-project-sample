@@ -1,0 +1,86 @@
+{
+   "groups": [
+      {
+         "name": "products",
+         "rules": [
+            {
+               "alert": "ServiceDown[products]",
+               "annotations": {
+                  "description": "{{ $labels.app}}  has been down for more than 10 seconds."
+               },
+               "expr": "absent(up{app=\"products\"}) == 1",
+               "for": "10s",
+               "labels": {
+                  "email": "xxx@xxx"
+               }
+            },
+            {
+               "alert": "GRPCServerErrorThrottlingHigh[products]",
+               "annotations": {
+                  "description": "{{$labels.instance}} has error request for 10 senconds (current value: {{ $value }}s)"
+               },
+               "expr": "sum(rate(grpc_server_handled_total{app=\"products\",grpc_type=\"unary\",grpc_code!=\"OK\"}[1m])) by (instance) > 0",
+               "for": "10s",
+               "labels": {
+                  "email": "xxx@xxx"
+               }
+            },
+            {
+               "alert": "GRPServerCLatencyThrottlingHigh[products]",
+               "annotations": {
+                  "description": "{{ $labels.instance }} has a tp99 request latency above 200ms (current value: {{ $value }}s)"
+               },
+               "expr": "histogram_quantile(0.99,sum(rate(grpc_server_handling_seconds_bucket{app=\"products\",grpc_type=\"unary\"}[1m])) by (instance,le)) > 0.2",
+               "for": "10s",
+               "labels": {
+                  "email": "xxx@xxx"
+               }
+            },
+            {
+               "alert": "GRPCClientErrorThrottlingHigh[products]",
+               "annotations": {
+                  "description": "{{$labels.instance}} has error request for 10 senconds (current value: {{ $value }}s)"
+               },
+               "expr": "sum(rate(grpc_client_handled_total{app=\"products\",grpc_type=\"unary\",grpc_code!=\"OK\"}[1m])) by (instance) > 0",
+               "for": "10s",
+               "labels": {
+                  "email": "xxx@xxx"
+               }
+            },
+            {
+               "alert": "GRPCClientLatencyThrottlingHigh[products]",
+               "annotations": {
+                  "description": "{{ $labels.instance }} has a tp99 request latency above 200ms (current value: {{ $value }}s)"
+               },
+               "expr": "histogram_quantile(0.99,sum(rate(grpc_client_handling_seconds_bucket{app=\"products\",grpc_type=\"unary\"}[1m])) by (instance,le)) > 0.2",
+               "for": "10s",
+               "labels": {
+                  "email": "xxx@xxx"
+               }
+            },
+            {
+               "alert": "HTTPErrorThrottlingHigh[products]",
+               "annotations": {
+                  "description": "{{$labels.instance}} has error request for 10 senconds (current value: {{ $value }}s)"
+               },
+               "expr": "sum(rate(http_server_requests_seconds_count{app=\"products\",code!=\"200\"}[1m])) by (instance) > 0",
+               "for": "10s",
+               "labels": {
+                  "email": "xxx@xxx"
+               }
+            },
+            {
+               "alert": "HTTPLatencyThrottlingHigh[products]",
+               "annotations": {
+                  "description": "{{ $labels.instance }} has a tp99 request latency above 200ms (current value: {{ $value }}s)"
+               },
+               "expr": "histogram_quantile(0.99,sum(rate(http_server_requests_seconds_bucket{app=\"products\"}[1m])) by (instance,le)) > 0.2",
+               "for": "10s",
+               "labels": {
+                  "email": "xxx@xxx"
+               }
+            }
+         ]
+      }
+   ]
+}

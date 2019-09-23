@@ -1,0 +1,14 @@
+groups:
+  - name: products
+    rules:
+      # heartbeat alert
+      - alert: Heartbeat
+        expr: vector(1)
+        labels:
+          severity: informational
+      # service availability alert
+      - alert: service_down
+        expr: up == 0
+      - alert: service_up
+        expr: up == 1
+
