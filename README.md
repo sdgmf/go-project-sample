@@ -15,27 +15,6 @@
     cd go-project-sample
     git submodule init
     git submodule update
-```
-编辑邮箱配置，发送告警邮件
-
-```yaml
-# configs/prometheus/alertmanager.yml 
-global:
-  resolve_timeout: 10s
-  smtp_from: xxx@xxx
-  smtp_smarthost: ip:port
-  smtp_auth_username: xxx@xxx
-  smtp_auth_password: xxx
-  smtp_auth_identity: xxx@xxx
-```
-```jsonnet
-// scripts/prometheus/rules.jsonnet
-// 接收告警的邮箱地址
-local email = "xxx@xxx";
-```
-
-启动项目
-```bash
     make docker-compose
 ```
 
